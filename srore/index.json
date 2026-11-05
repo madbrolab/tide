@@ -1,0 +1,228 @@
+{
+  "format": "tide.store/1",
+  "items": [
+    {
+      "kind": "plugin",
+      "id": "com.tide.cloud115",
+      "name": "115 连接器",
+      "description": "按账号 UUID 限速，转发 115 协议并返回上游结果。",
+      "version": "2.0.1",
+      "contract": "https://raw.githubusercontent.com/madbrolab/tide/store-2026.11.06/srore/interfaces/com.tide.cloud115/operations.json",
+      "files": {
+        "any": {
+          "url": "https://raw.githubusercontent.com/madbrolab/tide/store-2026.11.06/srore/packages/cloud115-2.0.1-encrypted.zip",
+          "sha256": "8c9dbfa945275adf97a1c746c516e44df61bca19b7eef69e8785681f395c348f",
+          "size": 398493
+        }
+      }
+    },
+    {
+      "id": "chromium",
+      "name": "浏览器抓取",
+      "version": "1.0.0",
+      "description": "在隔离的无头 Chromium 内核中按动作抓取动态页面。运行环境使用 browser 配置。",
+      "kind": "component",
+      "contract": "https://raw.githubusercontent.com/madbrolab/tide/store-2026.11.06/srore/interfaces/chromium/operations.json",
+      "files": {
+        "linux/amd64": {
+          "url": "https://raw.githubusercontent.com/madbrolab/tide/store-2026.11.06/srore/packages/chromium-1.0.0-linux-amd64.gz",
+          "sha256": "0d7e2dbdb03fa2962eaa50d8972953b8f98f7e3b2327139a40f7e29cfeb334ed",
+          "size": 2933325
+        },
+        "linux/arm64": {
+          "url": "https://raw.githubusercontent.com/madbrolab/tide/store-2026.11.06/srore/packages/chromium-1.0.0-linux-arm64.gz",
+          "sha256": "a2774b54b9a13bf832819ffe3868e35699ac0993a0d05cc87fbed2db05b019b9",
+          "size": 2650773
+        }
+      }
+    },
+    {
+      "id": "cd2",
+      "name": "CD2",
+      "version": "1.1.0",
+      "description": "连接 CloudDrive2 实例，按主体、路径和 RPC 分配权限。",
+      "kind": "component",
+      "contract": "https://raw.githubusercontent.com/madbrolab/tide/store-2026.11.06/srore/interfaces/cd2/operations.json",
+      "files": {
+        "linux/amd64": {
+          "url": "https://raw.githubusercontent.com/madbrolab/tide/store-2026.11.06/srore/packages/cd2-1.1.0-linux-amd64.gz",
+          "sha256": "332c61cd4ec8998854bc0bd9ef84b5b13ff485039ae60d8b419af0db674cb4d5",
+          "size": 4588275
+        },
+        "linux/arm64": {
+          "url": "https://raw.githubusercontent.com/madbrolab/tide/store-2026.11.06/srore/packages/cd2-1.1.0-linux-arm64.gz",
+          "sha256": "34c117ffaa4765057b33d1e01f30f933f4e8fccfc9a0677fac158e338af9ed9e",
+          "size": 4156011
+        }
+      }
+    },
+    {
+      "id": "ai",
+      "name": "AI 模型服务",
+      "version": "1.0.0",
+      "description": "统一提供商、模型别名和用量统计。支持文本、工具提议、结构化结果及可取消的流式响应；按次启动纯 Go 适配器。",
+      "kind": "component",
+      "contract": "https://raw.githubusercontent.com/madbrolab/tide/store-2026.11.06/srore/interfaces/ai/operations.json",
+      "files": {
+        "linux/amd64": {
+          "url": "https://raw.githubusercontent.com/madbrolab/tide/store-2026.11.06/srore/packages/ai-1.0.0-linux-amd64.gz",
+          "sha256": "48ebe4d814d1902fbe71ceac310e1a6711744f1b17235b75fa931c843ef867b7",
+          "size": 2971632
+        },
+        "linux/arm64": {
+          "url": "https://raw.githubusercontent.com/madbrolab/tide/store-2026.11.06/srore/packages/ai-1.0.0-linux-arm64.gz",
+          "sha256": "e907b86a663ead6d8ce7d1456aa9e584341ddee27bdef9f42c022dd0a4ab9563",
+          "size": 2687261
+        }
+      }
+    },
+    {
+      "id": "ai-panel",
+      "name": "AI 工作台",
+      "version": "0.3.0",
+      "description": "管理员源码工作区、AI 开发、Shell 与私有 Git，按动作构建明文或加密签名包，测试后发布自己的商店。工具进程按需启动，由基座回收。",
+      "requires": [
+        {
+          "kind": "component",
+          "id": "ai",
+          "name": "模型服务",
+          "version": "^1.0.0"
+        }
+      ],
+      "kind": "component",
+      "contract": "https://raw.githubusercontent.com/madbrolab/tide/store-2026.11.06/srore/interfaces/ai-panel/operations.json",
+      "files": {
+        "linux/amd64": {
+          "url": "https://raw.githubusercontent.com/madbrolab/tide/store-2026.11.06/srore/packages/ai-panel-0.3.0-linux-amd64.gz",
+          "sha256": "a3eb30a645afed4dea525f9b4c934264fc01eabbe4b33699b3f43e093f932c87",
+          "size": 5770251
+        },
+        "linux/arm64": {
+          "url": "https://raw.githubusercontent.com/madbrolab/tide/store-2026.11.06/srore/packages/ai-panel-0.3.0-linux-arm64.gz",
+          "sha256": "5340d035cc7fe7aab2c545caba072b89e45f106e719b09609f41a97c8bbe6e34",
+          "size": 5173866
+        }
+      }
+    },
+    {
+      "kind": "component",
+      "id": "notify",
+      "name": "通知",
+      "version": "1.0.0",
+      "description": "管理多个 Telegram Bot 和企业微信自建应用渠道，按渠道限流发送。",
+      "contract": "https://raw.githubusercontent.com/madbrolab/tide/store-2026.11.06/srore/interfaces/notify/operations.json",
+      "files": {
+        "linux/amd64": {
+          "url": "https://raw.githubusercontent.com/madbrolab/tide/store-2026.11.06/srore/packages/notify-1.0.0-linux-amd64.gz",
+          "sha256": "82657f3aff87c787bd503d323cf376c3c9303bed28547530d36c60c99d09111b",
+          "size": 2599132
+        },
+        "linux/arm64": {
+          "url": "https://raw.githubusercontent.com/madbrolab/tide/store-2026.11.06/srore/packages/notify-1.0.0-linux-arm64.gz",
+          "sha256": "f7ffcbd6f203b5f057dbba05e4a81a15ea77850a574e1e0d8a1e1d35583c5e12",
+          "size": 2352389
+        }
+      }
+    },
+    {
+      "kind": "component",
+      "id": "image",
+      "name": "图像处理",
+      "version": "1.0.0",
+      "description": "读取 PNG、JPEG、GIF 的尺寸与格式，按比例生成 PNG 缩略图。",
+      "contract": "https://raw.githubusercontent.com/madbrolab/tide/store-2026.11.06/srore/interfaces/image/operations.json",
+      "files": {
+        "linux/amd64": {
+          "url": "https://raw.githubusercontent.com/madbrolab/tide/store-2026.11.06/srore/packages/image-1.0.0-linux-amd64.gz",
+          "sha256": "fb983405d4ca1430b46b1571c03cda0956b89449a59f6ce6d60e371f5ac87186",
+          "size": 922508
+        },
+        "linux/arm64": {
+          "url": "https://raw.githubusercontent.com/madbrolab/tide/store-2026.11.06/srore/packages/image-1.0.0-linux-arm64.gz",
+          "sha256": "2053b8fa33ded3012f694d00a716b88af47696d69a635a449f8bd5cdd92f2cb2",
+          "size": 847340
+        }
+      }
+    },
+    {
+      "kind": "component",
+      "id": "optical",
+      "name": "光盘读取",
+      "version": "1.1.0",
+      "description": "读取 ISO 9660 镜像及已映射的实体光驱，可遍历目录和分块读取文件。",
+      "contract": "https://raw.githubusercontent.com/madbrolab/tide/store-2026.11.06/srore/interfaces/optical/operations.json",
+      "files": {
+        "linux/amd64": {
+          "url": "https://raw.githubusercontent.com/madbrolab/tide/store-2026.11.06/srore/packages/optical-1.1.0-linux-amd64.gz",
+          "sha256": "e071f3632811a617131cc8097e393a29324151674523bc762f7a2c6d90bae4e0",
+          "size": 791614
+        },
+        "linux/arm64": {
+          "url": "https://raw.githubusercontent.com/madbrolab/tide/store-2026.11.06/srore/packages/optical-1.1.0-linux-arm64.gz",
+          "sha256": "9feca057149f6d45d0d998563502d02529b451eb6a70fdc79304313c9ebba17a",
+          "size": 728738
+        }
+      }
+    },
+    {
+      "id": "ffprobe",
+      "name": "ffprobe",
+      "version": "7.0.2",
+      "description": "读取媒体容器和音视频流的元数据。",
+      "files": {
+        "linux/amd64": {
+          "url": "https://github.com/eugeneware/ffmpeg-static/releases/download/b6.1.1/ffprobe-linux-x64.gz",
+          "sha256": "25d9b6ccb05e3d9de9e04e31e2506d8dd7f9f0418981965ac6df12e8d3afd067",
+          "size": 29276839
+        },
+        "linux/arm64": {
+          "url": "https://github.com/eugeneware/ffmpeg-static/releases/download/b6.1.1/ffprobe-linux-arm64.gz",
+          "sha256": "2ab6aba60ee84412dff9188720703376cb4e7aaf7e0b5e43aa8249f2acae5bf8",
+          "size": 25493573
+        }
+      },
+      "kind": "component",
+      "contract": "https://raw.githubusercontent.com/madbrolab/tide/store-2026.11.06/srore/interfaces/ffprobe/operations.json"
+    },
+    {
+      "id": "ffmpeg",
+      "name": "ffmpeg",
+      "version": "7.0.2",
+      "description": "通过 FFmpeg 解码视频，并提取 JPEG 预览帧。",
+      "files": {
+        "linux/amd64": {
+          "url": "https://github.com/eugeneware/ffmpeg-static/releases/download/b6.1.1/ffmpeg-linux-x64.gz",
+          "sha256": "bfe8a8fc511530457b528c48d77b5737527b504a3797a9bc4866aeca69c2dffa",
+          "size": 29354986
+        },
+        "linux/arm64": {
+          "url": "https://github.com/eugeneware/ffmpeg-static/releases/download/b6.1.1/ffmpeg-linux-arm64.gz",
+          "sha256": "754a678672298bc68156adff58aa7385a592c2b30b1d0ae8750c45c915c4bac0",
+          "size": 25568691
+        }
+      },
+      "kind": "component",
+      "contract": "https://raw.githubusercontent.com/madbrolab/tide/store-2026.11.06/srore/interfaces/ffmpeg/operations.json"
+    },
+    {
+      "id": "mihomo",
+      "name": "mihomo",
+      "version": "1.19.33",
+      "description": "检查核心版本并验证内联路由规则。",
+      "files": {
+        "linux/amd64": {
+          "url": "https://github.com/MetaCubeX/mihomo/releases/download/v1.19.33/mihomo-linux-amd64-v1-v1.19.33.gz",
+          "sha256": "8ec92e7b2fdc6b853ba00156bab7e4e965c8b0d843b8c4ac8ab98795f02ad524",
+          "size": 22893964
+        },
+        "linux/arm64": {
+          "url": "https://github.com/MetaCubeX/mihomo/releases/download/v1.19.33/mihomo-linux-arm64-v1.19.33.gz",
+          "sha256": "ba408b317080ee265c46cb923a50018c1b82cbd708551cdd46a1e3e307396187",
+          "size": 20824326
+        }
+      },
+      "kind": "component",
+      "contract": "https://raw.githubusercontent.com/madbrolab/tide/store-2026.11.06/srore/interfaces/mihomo/operations.json"
+    }
+  ]
+}

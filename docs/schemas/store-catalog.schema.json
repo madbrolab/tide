@@ -1,0 +1,95 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Tide 商店索引",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "format",
+    "items"
+  ],
+  "properties": {
+    "format": {
+      "const": "tide.store/1"
+    },
+    "items": {
+      "type": "array",
+      "maxItems": 300,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "kind",
+          "id",
+          "name",
+          "version",
+          "contract",
+          "files"
+        ],
+        "properties": {
+          "kind": {
+            "enum": [
+              "plugin",
+              "component"
+            ]
+          },
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "version": {
+            "type": "string",
+            "pattern": "^(0|[1-9][0-9]*)[.](0|[1-9][0-9]*)[.](0|[1-9][0-9]*)$"
+          },
+          "description": {
+            "type": "string"
+          },
+          "source": {
+            "type": "string",
+            "description": "基座覆盖此字段，不能用它声明来源信任"
+          },
+          "contract": {
+            "type": "string",
+            "pattern": "^https?://"
+          },
+          "requires": {
+            "type": "array",
+            "maxItems": 32,
+            "items": {
+              "$ref": "plugin-manifest.schema.json#/$defs/dependency"
+            }
+          },
+          "files": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "object",
+              "required": [
+                "url",
+                "sha256",
+                "size"
+              ],
+              "additionalProperties": false,
+              "properties": {
+                "url": {
+                  "type": "string",
+                  "pattern": "^https?://"
+                },
+                "sha256": {
+                  "type": "string",
+                  "pattern": "^[0-9a-f]{64}$"
+                },
+                "size": {
+                  "type": "integer",
+                  "minimum": 1,
+                  "maximum": 100663296
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "description": "直接发布 format + items 的 JSON；无需签名、公钥或信任 JSON。基座校验格式、来源、版本、依赖及下载大小和 SHA-256。kind/id/version 必须唯一，自定义源只支持 plugin。"
+}

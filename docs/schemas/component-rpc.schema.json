@@ -1,0 +1,59 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Tide official Go component callback request / 1",
+  "type": "object",
+  "required": [
+    "version",
+    "id",
+    "method"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "version": {
+      "const": 1
+    },
+    "id": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "method": {
+      "enum": [
+        "host.info",
+        "host.resources",
+        "host.capabilities",
+        "operations",
+        "invoke",
+        "stream",
+        "log",
+        "development",
+        "$cancel"
+      ]
+    },
+    "params": {
+      "type": "object"
+    },
+    "timeoutMs": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 120000
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "method": {
+            "const": "$cancel"
+          }
+        }
+      },
+      "else": {
+        "required": [
+          "params",
+          "timeoutMs"
+        ]
+      }
+    }
+  ],
+  "$comment": "UTF-8 JSON lines on inherited Unix stream FD. At most 256 KiB excluding LF; no caller identity fields. Replies: {id,data? ,error?:{code,message}}. IDs increase per connection; $cancel reuses a pending id. Invocation arguments follow call.schema.json. Actual caller and deadline are bound by the host. development is reserved for ai-panel and a host-bound project task; params={tool,args}. No caller-supplied project or permission fields."
+}

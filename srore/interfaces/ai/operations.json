@@ -1,0 +1,144 @@
+{
+  "models.list": {
+    "entry": "ctx.components.call(\"@AI 模型服务\", \"models.list\", input)",
+    "permission": "ai/models.list@1",
+    "input": {},
+    "output": {
+      "items": "直接返回模型数组，每项 alias/name/default/tools/json/maxInputBytes/maxOutputTokens；仅启用且调用者可用的模型"
+    },
+    "example": {
+      "args": {},
+      "result": [
+        {
+          "alias": "nas-text",
+          "name": "日常助手",
+          "default": true,
+          "tools": true,
+          "json": true,
+          "maxInputBytes": 32768,
+          "maxOutputTokens": 1024
+        }
+      ]
+    }
+  },
+  "generate": {
+    "entry": "ctx.components.call(\"@AI 模型服务\", \"generate\", input)",
+    "permission": "ai/generate@1",
+    "input": {
+      "model": "本地模型别名，留空使用默认模型",
+      "messages": "1–128 条 system/user/assistant/tool 消息，text 为文本；工具回填使用 callId",
+      "maxOutputTokens": "可选，正整数，不超过模型预算",
+      "tools": "最多 32 个 {name,description,inputSchema} 工具声明，返回提议由调用者执行",
+      "outputSchema": "可选 JSON Schema 对象；外部引用被禁用"
+    },
+    "output": {
+      "schema": "/api/v1/developer/files/ai-generate.schema.json",
+      "result": "model/finish/text/value?/toolCalls?/usage"
+    },
+    "example": {
+      "args": {
+        "model": "nas-text",
+        "messages": [
+          {
+            "role": "user",
+            "text": "概括这条日志"
+          }
+        ]
+      },
+      "result": {
+        "model": "nas-text",
+        "finish": "stop",
+        "text": "任务完成",
+        "usage": {
+          "source": "unknown",
+          "inputTokens": null,
+          "outputTokens": null
+        }
+      }
+    },
+    "errors": [
+      "model_unavailable",
+      "model_not_allowed",
+      "input_too_large",
+      "output_budget_exceeded",
+      "provider_capacity_reached",
+      "provider_rate_limited",
+      "provider_unreachable",
+      "provider_rejected",
+      "model_refused",
+      "invalid_structured_output",
+      "invalid_tool_output",
+      "incomplete_stream",
+      "cancelled_or_timeout"
+    ]
+  },
+  "generate.stream": {
+    "entry": "ctx.components.call(\"@AI 模型服务\", \"generate.stream\", input)",
+    "permission": "ai/generate.stream@1",
+    "input": {
+      "model": "本地模型别名，留空使用默认模型",
+      "messages": "1–128 条 system/user/assistant/tool 消息，text 为文本；工具回填使用 callId",
+      "maxOutputTokens": "可选，正整数，不超过模型预算",
+      "tools": "最多 32 个 {name,description,inputSchema} 工具声明，返回提议由调用者执行",
+      "outputSchema": "可选 JSON Schema 对象；外部引用被禁用"
+    },
+    "output": {
+      "schema": "/api/v1/developer/files/ai-generate.schema.json",
+      "result": "streamId/direction/expiresAt；ctx.stream(id,\"next\") → data:{type:text.delta|done,...}，错误 → type:error/code；最终 type:end"
+    },
+    "example": {
+      "args": {
+        "model": "nas-text",
+        "messages": [
+          {
+            "role": "user",
+            "text": "概括这条日志"
+          }
+        ]
+      },
+      "result": {
+        "model": "nas-text",
+        "finish": "stop",
+        "text": "任务完成",
+        "usage": {
+          "source": "unknown",
+          "inputTokens": null,
+          "outputTokens": null
+        }
+      }
+    },
+    "errors": [
+      "model_unavailable",
+      "model_not_allowed",
+      "input_too_large",
+      "output_budget_exceeded",
+      "provider_capacity_reached",
+      "provider_rate_limited",
+      "provider_unreachable",
+      "provider_rejected",
+      "model_refused",
+      "invalid_structured_output",
+      "invalid_tool_output",
+      "incomplete_stream",
+      "cancelled_or_timeout"
+    ]
+  },
+  "statistics": {
+    "entry": "ctx.components.call(\"@AI 模型服务\", \"statistics\", input)",
+    "permission": "ai/statistics@1",
+    "input": {
+      "days": "1、7 或 30，默认 7",
+      "model": "可选，本地别名",
+      "caller": "可选，仅管理员可跨调用方查询"
+    },
+    "output": {
+      "rows": "day/caller/model/calls/failed/inputTokens/outputTokens/unknownUsage/durationMs；最多 1000 行，超出需按模型或调用者筛选"
+    },
+    "example": {
+      "args": {
+        "days": 7
+      },
+      "result": []
+    }
+  }
+}

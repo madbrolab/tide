@@ -1,0 +1,52 @@
+{
+  "models.list": {
+    "adminOnly": true,
+    "input": {},
+    "output": "可用模型数组；以 component:ai-panel 身份查询"
+  },
+  "chat": {
+    "adminOnly": true,
+    "input": {
+      "model": "本地模型别名，可留空",
+      "messages": "1–64 条 {role:user|assistant,text}，每条最多 32768 字节",
+      "maxOutputTokens": "可选，不超过模型配置"
+    },
+    "output": "AI Result: model/finish/text/usage；不自动执行工具"
+  },
+  "resources": {
+    "adminOnly": true,
+    "input": {
+      "kind": "plugin|component",
+      "after": "可选分页游标",
+      "limit": "1–100，默认50"
+    },
+    "output": "{items,next?}，仅查询元数据，不启动目标"
+  },
+  "operations": {
+    "adminOnly": true,
+    "input": {
+      "target": "包 ID 或声明的 @名称",
+      "operation": "可选，单个动作",
+      "instance": "CD2实例"
+    },
+    "output": "目标操作契约，不执行目标代码"
+  },
+  "statistics": {
+    "adminOnly": true,
+    "input": {
+      "days": "1|7|30",
+      "model": "可选，本地模型别名"
+    },
+    "output": "本工作台的 AI 调用日汇总"
+  },
+  "develop": {
+    "adminOnly": true,
+    "input": {
+      "prompt": "开发目标；只能由项目 runs API 启动",
+      "model": "支持工具的模型别名",
+      "maxSteps": "1–32，默认16",
+      "allowShell": "由管理员任务绑定"
+    },
+    "output": "{text,completed,verified,toolCalls}；verified 来自真实构建测试工具"
+  }
+}

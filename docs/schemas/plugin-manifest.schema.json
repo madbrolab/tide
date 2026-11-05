@@ -1,0 +1,673 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:tide:plugin-manifest",
+  "title": "插件清单 manifest.json（SDK 2）",
+  "description": "宿主安装时按此 schema 校验，未列出的字段一律拒绝。",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "sdk",
+    "id",
+    "name",
+    "version",
+    "actions"
+  ],
+  "properties": {
+    "sdk": {
+      "const": 2,
+      "description": "插件 SDK 主版本。宿主只运行 SDK 2（全异步 ctx），其他版本在安装时被拒绝"
+    },
+    "id": {
+      "$ref": "#/$defs/pluginId"
+    },
+    "name": {
+      "$ref": "#/$defs/name"
+    },
+    "version": {
+      "type": "string",
+      "maxLength": 48,
+      "pattern": "^[0-9]+[.][0-9]+[.][0-9]+$"
+    },
+    "description": {
+      "type": "string",
+      "maxLength": 300
+    },
+    "icon": {
+      "const": "icon.png"
+    },
+    "developer": {
+      "type": "object",
+      "required": [
+        "name",
+        "repository"
+      ],
+      "properties": {
+        "name": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 80,
+          "pattern": "\\S"
+        },
+        "repository": {
+          "type": "string",
+          "format": "uri",
+          "pattern": "^https://[^/?#@\\s]+/[^?#\\s]+"
+        }
+      },
+      "additionalProperties": false
+    },
+    "symbol": {
+      "enum": [
+        "",
+        "box",
+        "bookmark",
+        "globe",
+        "layers",
+        "pulse"
+      ]
+    },
+    "actions": {
+      "type": "object",
+      "minProperties": 1,
+      "maxProperties": 1024,
+      "propertyNames": {
+        "pattern": "^[a-z][a-z0-9-]{0,47}$"
+      },
+      "additionalProperties": {
+        "$ref": "#/$defs/action"
+      }
+    },
+    "requires": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/dependency"
+      },
+      "uniqueItems": true,
+      "maxItems": 32
+    },
+    "calls": {
+      "type": "array",
+      "maxItems": 256,
+      "items": {
+        "type": "string",
+        "maxLength": 200,
+        "description": "插件ID/动作@1 或 @名称/动作@1"
+      },
+      "description": "预期调用的插件动作，用于依赖检查和影响分析"
+    },
+    "components": {
+      "type": "array",
+      "maxItems": 64,
+      "items": {
+        "type": "string",
+        "maxLength": 200,
+        "description": "插件ID/动作@1 或 @名称/动作@1"
+      },
+      "description": "使用的官方组件动作，如 ffprobe/inspect@1"
+    },
+    "triggers": {
+      "type": "array",
+      "maxItems": 64,
+      "items": {
+        "$ref": "#/$defs/trigger"
+      }
+    },
+    "services": {
+      "type": "object",
+      "propertyNames": {
+        "pattern": "^[a-z][a-z0-9-]{0,47}$"
+      },
+      "additionalProperties": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "action",
+          "label"
+        ],
+        "properties": {
+          "action": {
+            "type": "string",
+            "description": "actions 中的内部 JS 初始化入口，使用该动作的 entry 分片"
+          },
+          "label": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 96
+          },
+          "start": {
+            "enum": [
+              "manual",
+              "auto"
+            ],
+            "default": "manual"
+          },
+          "restart": {
+            "enum": [
+              "never",
+              "on-failure"
+            ],
+            "default": "never"
+          },
+          "startupTimeoutMs": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 60000,
+            "default": 10000
+          },
+          "stopTimeoutMs": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 30000,
+            "default": 3000
+          },
+          "memoryMiB": {
+            "type": "integer",
+            "minimum": 8,
+            "maximum": 256,
+            "default": 24,
+            "description": "QuickJS 堆预算，不是进程 RSS 或网络缓冲的总上限"
+          }
+        }
+      }
+    },
+    "storage": {
+      "enum": [
+        "kv",
+        "sql"
+      ],
+      "description": "私有存储；sql 需要 migrations.json"
+    },
+    "cards": {
+      "type": "array",
+      "maxItems": 16,
+      "items": {
+        "$ref": "#/$defs/card"
+      }
+    },
+    "portal": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "title",
+        "actions"
+      ],
+      "properties": {
+        "title": {
+          "type": "string",
+          "minLength": 1
+        },
+        "actions": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/actionName"
+          }
+        },
+        "suggestedPort": {
+          "type": "integer",
+          "minimum": 1024,
+          "maximum": 65535
+        },
+        "pages": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "title",
+              "action"
+            ],
+            "properties": {
+              "title": {
+                "type": "string"
+              },
+              "action": {
+                "$ref": "#/$defs/actionName"
+              },
+              "fields": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/$defs/field"
+                }
+              },
+              "columns": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/$defs/column"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "console": {
+      "type": "boolean",
+      "description": "携带签名管理界面 dist/console.mjs"
+    },
+    "license": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "url",
+        "publicKey"
+      ],
+      "properties": {
+        "url": {
+          "type": "string",
+          "pattern": "^https://"
+        },
+        "publicKey": {
+          "type": "string",
+          "description": "Ed25519 公钥，Base64"
+        }
+      }
+    },
+    "connector": {
+      "type": "boolean",
+      "description": "连接器：调用需要账号 uuid，按账号限速"
+    },
+    "domains": {
+      "type": "array",
+      "maxItems": 64,
+      "items": {
+        "type": "string",
+        "maxLength": 253,
+        "pattern": "^[a-z0-9-]+([.][a-z0-9-]+)+$"
+      },
+      "description": "托管凭据允许发往的 HTTPS 域名"
+    },
+    "transferDomains": {
+      "type": "array",
+      "maxItems": 64,
+      "items": {
+        "type": "string",
+        "maxLength": 253,
+        "pattern": "^[a-z0-9-]+([.][a-z0-9-]+)+$"
+      }
+    },
+    "contentDomains": {
+      "type": "array",
+      "maxItems": 64,
+      "items": {
+        "type": "string",
+        "maxLength": 255
+      }
+    },
+    "credentialKinds": {
+      "type": "array",
+      "items": {
+        "enum": [
+          "cookie",
+          "bearer"
+        ]
+      }
+    },
+    "credentialTarget": {
+      "$ref": "#/$defs/pluginId"
+    },
+    "browser": {
+      "type": "boolean"
+    },
+    "adapter": {
+      "type": "string",
+      "description": "仅宿主随附的原生模块使用"
+    }
+  },
+  "$defs": {
+    "dependency": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "kind",
+        "id"
+      ],
+      "properties": {
+        "kind": {
+          "enum": [
+            "plugin",
+            "component"
+          ]
+        },
+        "id": {
+          "type": "string",
+          "description": "实际安装包 ID；不填显示名称"
+        },
+        "name": {
+          "$ref": "#/$defs/name",
+          "description": "本调用方的稳定调用名，不含 @；同一清单内不能重复，可与目标显示名称不同"
+        },
+        "minVersion": {
+          "type": "string",
+          "pattern": "^(0|[1-9][0-9]*)[.](0|[1-9][0-9]*)[.](0|[1-9][0-9]*)$"
+        },
+        "version": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 256,
+          "description": "稳定发行版的范围，例如 ^1.2.0、~1.2.0、>=1.0.0 <2.0.0、1.x 或精确 1.2.3；与 minVersion 互斥"
+        }
+      },
+      "oneOf": [
+        {
+          "required": [
+            "version"
+          ],
+          "not": {
+            "required": [
+              "minVersion"
+            ]
+          }
+        },
+        {
+          "required": [
+            "minVersion"
+          ],
+          "not": {
+            "required": [
+              "version"
+            ]
+          }
+        }
+      ]
+    },
+    "packageId": {
+      "type": "string",
+      "maxLength": 160,
+      "pattern": "^com(?:[.][a-z][a-z0-9]*){2,}$"
+    },
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 48,
+      "pattern": "^[^\\s@/\\\\\u0000-\u001f-  ](?:[^@/\\\\\u0000-\u001f-  ]*[^\\s@/\\\\\u0000-\u001f-  ])?$"
+    },
+    "callName": {
+      "type": "string",
+      "maxLength": 49,
+      "pattern": "^@[^\\s@/\\\\\u0000-\u001f-  ](?:[^@/\\\\\u0000-\u001f-  ]*[^\\s@/\\\\\u0000-\u001f-  ])?$"
+    },
+    "pluginId": {
+      "type": "string",
+      "maxLength": 160,
+      "pattern": "^(?:[a-z][a-z0-9-]{0,47}|com(?:[.][a-z][a-z0-9]*){2,})$",
+      "description": "倒序包名（com.开发者.包名）；短 ID 仅供本地测试"
+    },
+    "actionName": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9-]{0,47}$"
+    },
+    "field": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "name",
+        "label"
+      ],
+      "properties": {
+        "name": {
+          "$ref": "#/$defs/actionName"
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 80
+        },
+        "required": {
+          "type": "boolean"
+        }
+      }
+    },
+    "action": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "label"
+      ],
+      "properties": {
+        "label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 120
+        },
+        "fields": {
+          "type": "array",
+          "maxItems": 32,
+          "items": {
+            "$ref": "#/$defs/field"
+          },
+          "description": "控制台与门户表单字段（文本）；动作输入的完整结构以 operations.json 为准"
+        },
+        "external": {
+          "type": "boolean",
+          "description": "允许为此动作签发外部访问密钥"
+        },
+        "entry": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9-]{0,47}$",
+          "description": "所在执行分片，默认 main"
+        },
+        "immediateOnly": {
+          "type": "boolean",
+          "description": "只能即时调用，不能排队或定时"
+        },
+        "adminOnly": {
+          "type": "boolean",
+          "description": "只允许管理员直接即时调用"
+        },
+        "bootstrap": {
+          "type": "boolean",
+          "description": "连接器的匿名登录引导动作"
+        },
+        "inlineCredential": {
+          "enum": [
+            "any",
+            "cookie",
+            "bearer"
+          ],
+          "description": "要求调用方随请求提供该类型的临时凭据"
+        },
+        "sourceFile": {
+          "type": "boolean",
+          "description": "接受一个已授权的源文件"
+        },
+        "optionalSource": {
+          "type": "boolean",
+          "description": "源文件可选（需同时设 sourceFile）"
+        },
+        "countWhen": {
+          "type": "array",
+          "maxItems": 16,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "metric",
+              "path",
+              "equals"
+            ],
+            "properties": {
+              "metric": {
+                "type": "string",
+                "pattern": "^[a-z][a-z0-9-]{0,47}$"
+              },
+              "path": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 128
+              },
+              "equals": {
+                "type": "string",
+                "maxLength": 48
+              }
+            }
+          }
+        },
+        "binding": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "table",
+            "column",
+            "keys",
+            "format"
+          ],
+          "properties": {
+            "table": {
+              "type": "string"
+            },
+            "column": {
+              "type": "string"
+            },
+            "keys": {
+              "type": "array",
+              "minItems": 1,
+              "maxItems": 4,
+              "items": {
+                "type": "string"
+              }
+            },
+            "format": {
+              "enum": [
+                "json",
+                "text",
+                "credential"
+              ]
+            },
+            "field": {
+              "type": "string"
+            },
+            "purposes": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "string",
+                "pattern": "^[a-z][a-z0-9-]{0,47}$"
+              }
+            }
+          },
+          "description": "由宿主直接从私库返回结果，不运行 JS"
+        },
+        "retry": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "attempts"
+          ],
+          "properties": {
+            "attempts": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 5,
+              "description": "排队任务失败后的最多重试次数"
+            },
+            "delayMs": {
+              "type": "integer",
+              "minimum": 1000,
+              "maximum": 3600000,
+              "default": 10000,
+              "description": "首次重试等待，之后每次翻倍"
+            }
+          },
+          "description": "仅用于可重复执行（幂等）的排队与定时动作；宿主重启时被打断的任务也会按此重试"
+        }
+      }
+    },
+    "trigger": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "action"
+      ],
+      "properties": {
+        "action": {
+          "$ref": "#/$defs/actionName"
+        },
+        "everySeconds": {
+          "type": "integer",
+          "minimum": 10,
+          "maximum": 31536000
+        },
+        "event": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9-]{0,47}[.][a-z][a-z0-9-]{0,47}$"
+        }
+      },
+      "oneOf": [
+        {
+          "required": [
+            "everySeconds"
+          ]
+        },
+        {
+          "required": [
+            "event"
+          ]
+        }
+      ]
+    },
+    "card": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "title",
+        "style"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/actionName"
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 150
+        },
+        "style": {
+          "enum": [
+            "number",
+            "bar",
+            "line",
+            "table",
+            "text"
+          ]
+        },
+        "tone": {
+          "enum": [
+            "",
+            "primary",
+            "success",
+            "warning",
+            "danger",
+            "info"
+          ]
+        },
+        "metric": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9-]{0,47}$"
+        },
+        "action": {
+          "$ref": "#/$defs/actionName"
+        },
+        "body": {
+          "type": "string",
+          "maxLength": 1500
+        }
+      }
+    },
+    "column": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "key",
+        "label"
+      ],
+      "properties": {
+        "key": {
+          "type": "string"
+        },
+        "label": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

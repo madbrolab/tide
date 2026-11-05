@@ -1,0 +1,64 @@
+{
+  "fetch": {
+    "entry": "ctx.components.call('chromium','fetch',args)",
+    "permission": "chromium/fetch@1",
+    "input": {
+      "url": "获准的 HTTPS 目标",
+      "route": "可选，标准出口选择",
+      "userAgent": "浏览器 UA",
+      "language": "区域语言",
+      "viewport": "width、height、scale、mobile",
+      "cookies": "当前起始主机的 name、value、path",
+      "headers": "仅起始源的请求头",
+      "wait": "selector、timeoutMs",
+      "steps": "依次 click / input / scroll / wait，每步含 selector，可含 text",
+      "extract": "字段名映射到 selector、value（text 或属性名）、all",
+      "blockResources": "image、font、media、stylesheet、script",
+      "html": "返回 HTML",
+      "text": "返回正文",
+      "screenshot": "返回 PNG"
+    },
+    "output": {
+      "status": "主文档状态码",
+      "finalUrl": "最终 URL",
+      "title": "标题",
+      "extracted": "各字段的字符串、null 或数组",
+      "html": "可选字符串",
+      "text": "可选正文",
+      "screenshot": "可选 base64 PNG；合计最多 250 KiB"
+    },
+    "example": {
+      "url": "https://example.org/",
+      "wait": {
+        "selector": "h1"
+      },
+      "extract": {
+        "heading": {
+          "selector": "h1",
+          "value": "text"
+        }
+      }
+    }
+  },
+  "session.open": {
+    "permission": "chromium/session.open@1",
+    "input": "与 fetch 相同，打开独立页面并保留 90 秒",
+    "output": {
+      "handle": "与调用方、插件版本和账号绑定",
+      "expiresAt": "绝对过期时间",
+      "page": "首屏结果"
+    }
+  },
+  "session.step": {
+    "permission": "chromium/session.step@1",
+    "input": "handle，以及 steps、wait、extract、html、text、screenshot",
+    "output": "当前页面提取结果"
+  },
+  "session.close": {
+    "permission": "chromium/session.close@1",
+    "input": {
+      "handle": "会话句柄"
+    },
+    "output": "true"
+  }
+}
