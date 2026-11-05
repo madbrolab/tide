@@ -14,6 +14,7 @@ export function resources(ctx, input) {
  */
 export async function echo(ctx, input) {
   const listener = await ctx.net.listen({ address: input.address || '127.0.0.1:0' });
+  /** @param {string} handle */
   const serve = async (handle) => {
     try {
       for (;;) {
