@@ -1,0 +1,1 @@
+try{const t=localStorage.getItem('tide-demo-theme')||'dark';document.documentElement.dataset.theme=t;document.documentElement.classList.toggle('dark',t==='dark')}catch{}
