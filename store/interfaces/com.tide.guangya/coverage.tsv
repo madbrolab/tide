@@ -1,0 +1,92 @@
+上游成员	插件动作	适配说明
+headers	client-info	调用信封 headers/userAgent；默认请求头由协议层设置
+client_id	client-info	clientId 显式参数；不解析宿主持有的凭据
+request	request	已实现
+login_with_app	login-with-app	非阻塞分步调用，凭据由调用方保存
+login_with_phone	login-with-phone	非阻塞分步调用，凭据由调用方保存
+login_with_qrcode	login-with-qrcode	非阻塞分步调用，凭据由调用方保存
+login_another_app	login-another-app	非阻塞分步调用，凭据由调用方保存
+login	login	非阻塞分步调用，凭据由调用方保存
+refresh_access_token	refresh-access-token	已实现
+app_client_id_info	app-client-id-info	已实现
+app_global_config	app-global-config	已实现
+auth_captcha_init	auth-captcha-init	已实现
+auth_code	auth-code	已实现
+auth_revoke	auth-revoke	已实现
+auth_signin	auth-signin	已实现
+auth_token	auth-token	已实现
+auth_token_introspect	auth-token-introspect	已实现
+auth_verification	auth-verification	已实现
+auth_verification_verify	auth-verification-verify	已实现
+cloudcollection_resolve_res	cloudcollection-resolve-res	已实现
+cloudcollection_resolve_torrent	cloudcollection-resolve-torrent	已实现
+cloudcollection_task_create	cloudcollection-task-create	已实现
+cloudcollection_task_delete	cloudcollection-task-delete	已实现
+cloudcollection_task_list	cloudcollection-task-list	已实现
+cloudcollection_task_retry	cloudcollection-task-retry	已实现
+download_create_packaging_task	download-create-packaging-task	已实现
+download_query_packaging_task	download-query-packaging-task	已实现
+download_url	download-url	已实现
+download_url_info	download-url-info	已实现
+download_vod_url	download-vod-url	已实现
+download_vod_url_info	download-vod-url-info	已实现
+fs_clear_recycle_bin	fs-clear-recycle-bin	已实现
+fs_compress	fs-compress	已实现
+fs_compress_status	fs-compress-status	已实现
+fs_compress_file_list	fs-compress-file-list	已实现
+fs_copy	fs-copy	已实现
+fs_delete	fs-delete	已实现
+fs_detail	fs-detail	已实现
+fs_direct_link_set	fs-direct-link-set	已实现
+fs_direct_link_unset	fs-direct-link-unset	已实现
+fs_file_page_data	fs-file-page-data	已实现
+fs_info_by_file_id	fs-info-by-file-id	已实现
+fs_info_by_task_id	fs-info-by-task-id	已实现
+fs_list	fs-list	已实现
+fs_mkdir	fs-mkdir	已实现
+fs_move	fs-move	已实现
+fs_recycle	fs-recycle	已实现
+fs_rename	fs-rename	已实现
+fs_report_play_record	fs-report-play-record	已实现
+fs_restore_list	fs-restore-list	已实现
+fs_search	fs-search	已实现
+fs_user_action_delete	fs-user-action-delete	已实现
+fs_user_action_list	fs-user-action-list	已实现
+share_access_token	share-access-token	已实现
+share_create	share-create	已实现
+share_delete	share-delete	已实现
+share_delete_invalid	share-delete-invalid	已实现
+share_list	share-list	已实现
+share_download_url	share-download-url	已实现
+share_download_url_info	share-download-url-info	已实现
+share_get_files_size	share-get-files-size	已实现
+share_list_files	share-list-files	已实现
+share_restore	share-restore	已实现
+share_search_files	share-search-files	已实现
+share_summary	share-summary	已实现
+share_template	share-template	已实现
+share_template_set	share-template-set	已实现
+share_update	share-update	已实现
+fs_task_status	fs-task-status	已实现
+upload_check_can_flash_upload	upload-check-can-flash-upload	已实现
+upload_query_uploading_tasks_stat	upload-query-uploading-tasks-stat	已实现
+upload_res_center_token	upload-res-center-token	已实现
+upload_task_delete	upload-task-delete	已实现
+upload_file_fast	upload-file-fast	已实现
+upload_file	upload-file	授权源文件 + 加密游标，合并单独提交
+user_assets	user-assets	已实现
+user_authorize	user-authorize	已实现
+user_me	user-me	已实现
+guangyapan.client.check_response	check-response	错误映射为 Tide 错误
+guangyapan.oss.oss_request	oss-request	迭代器/组合上传改为分页及显式下一步；文件用 sourcePath
+guangyapan.oss.oss_multipart_upload_init	oss-multipart-upload-init	迭代器/组合上传改为分页及显式下一步；文件用 sourcePath
+guangyapan.oss.oss_multipart_upload_cancel	oss-multipart-upload-cancel	迭代器/组合上传改为分页及显式下一步；文件用 sourcePath
+guangyapan.oss.oss_multipart_upload_complete	oss-multipart-upload-complete	迭代器/组合上传改为分页及显式下一步；文件用 sourcePath
+guangyapan.oss.oss_multipart_list_parts	oss-multipart-list-parts	迭代器/组合上传改为分页及显式下一步；文件用 sourcePath
+guangyapan.oss.oss_multipart_part_iter	oss-multipart-part-iter	迭代器/组合上传改为分页及显式下一步；文件用 sourcePath
+guangyapan.oss.oss_upload	oss-upload	迭代器/组合上传改为分页及显式下一步；文件用 sourcePath
+guangyapan.oss.oss_multipart_upload_part	oss-multipart-upload-part	迭代器/组合上传改为分页及显式下一步；文件用 sourcePath
+guangyapan.oss.oss_multipart_upload_part_iter	oss-multipart-upload-part-iter	迭代器/组合上传改为分页及显式下一步；文件用 sourcePath
+guangyapan.oss.oss_multipart_upload	oss-multipart-upload	迭代器/组合上传改为分页及显式下一步；文件用 sourcePath
+guangyapan.upload.determine_partsize	upload-determine-partsize	默认 10000 片，进度存私库、合并清单流式发送
+guangyapan.upload.upload_file	oss-upload / oss-multipart-upload / oss-multipart-upload-complete	直接流式上传或初始化、逐片续传、显式合并；Python 文件对象由调用方准备为本机文件

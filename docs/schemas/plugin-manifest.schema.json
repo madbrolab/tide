@@ -242,7 +242,7 @@
     },
     "console": {
       "type": "boolean",
-      "description": "携带签名管理界面 dist/console.mjs"
+      "description": "携带加密自定义界面 dist/console.mjs 与 console.css，在宿主框架内隔离样式"
     },
     "license": {
       "type": "object",
@@ -304,6 +304,16 @@
     },
     "credentialTarget": {
       "$ref": "#/$defs/pluginId"
+    },
+    "credentialTargets": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 16,
+      "uniqueItems": true,
+      "items": {
+        "$ref": "#/$defs/pluginId"
+      },
+      "description": "通用账号提供方可签发句柄的连接器；与 credentialTarget 二选一，凭据绑定须声明 targetColumn"
     },
     "browser": {
       "type": "boolean"
@@ -542,6 +552,10 @@
                 "type": "string",
                 "pattern": "^[a-z][a-z0-9-]{0,47}$"
               }
+            },
+            "targetColumn": {
+              "type": "string",
+              "description": "多目标凭据提供方：该行目标连接器所在的列，值须在 credentialTargets 中，并与密封记录的 target 一致"
             }
           },
           "description": "由宿主直接从私库返回结果，不运行 JS"

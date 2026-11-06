@@ -89,25 +89,6 @@ POST `/api/v1/market/{kind}/{id}/preview?version=1.2.3` 返回 `{steps,digest}`�
 
 退出超时或文件清理失败会报错，已停用状态不会自动回滚；刷新清单核对当前状态后重试。已完成的网络/文件外部副作用不会撤销。未声明的动态调用关系无法出现在静态影响清单中；开发者必须声明依赖。主动脱离 SDK 管理的系统进程仍由容器管理员负责。
 
-## 本地未签名明文包
+## 历史格式兼容
 
-无需生成密钥即可构建：
-
-```sh
-go run ./cmd/tidepack build -source -unsigned -dir examples/resource-inspector -out /tmp/resources-local.zip
-```
-
-这会生成独立格式 `tide.source/1`：release.json 记录每个文件的大小及摘要，publisher 为空，入口为 source-shards，代码为 unit-组名.js，build/units 记录编译配置和执行摘要；保留 manifest、完整 operations.json、图标、可选 ui.json/migrations.json/NOTICE.txt。不接受签名条目、加密分片或同源可执行 console。它与“签名验证失败的包”不同，移除签名不能自动转为受信任安装。
-
-管理员仍使用 POST `/api/v1/plugins/preview` 上传 ZIP 或 multipart。返回 `unsigned:true`，steps 中的 `sourceApproval` 是对应完整 ZIP 的 SHA-256（64 位十六进制）。页面按名称列包，展示摘要，并要求确认未签名来源。提交同一批文件时同时发送：
-
-```text
-If-Match: <preview.release>
-X-Tide-Approve-Source: <preview.release>
-```
-
-缺少第二个确认返回 403，计划变化返回 412。确认绑定整个安装计划，包含未签名依赖，不能复用于另一个包或版本。授权记录与安装元数据在同一事务提交；重启或重新启用时核对发行 ZIP、记录的摘要、清单及编译产物。即时业务调用没有新增授权数据库读取。
-
-未签名包保留内部本地归属，不冒充开发者签名；已有签名发布者的包身份不能用未签名包接管，历史版本同样保留身份。更换信任来源需使用新的包 ID。自定义/官方商店仍要求签名发行包，安装未签名包不会扩大商店信任。插件运行能力与同样安装的签名包一致。
-
-结构资源可从 `/api/v1/developer/files/plugin-manifest.schema.json`、`source-release.schema.json`、`store-catalog.schema.json` 下载；JSON Schema 供编辑器校验结构，签名、摘要、版本组合和重复身份仍由后端校验。
+当前公开开发流程统一使用 `tide.encrypted/1`，官方商店与第三方商店都接受这种无需签名的加密包，自定义界面也使用同一流程。历史签名包和本地源码包保留兼容入口；新项目直接使用公开 JS 打包器，无需取得基座源码或配置旧身份与信任文件。

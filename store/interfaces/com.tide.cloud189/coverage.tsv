@@ -1,0 +1,140 @@
+上游成员	插件动作	适配说明
+P189BaseClient.cookies	session-create / session-update	Python 客户端内存/文件属性改为显式加密会话配置；无隐式凭据文件或属性读取 API
+P189BaseClient.cookiejar	session-create / session-update	Python 客户端内存/文件属性改为显式加密会话配置；无隐式凭据文件或属性读取 API
+P189BaseClient.cookies_str	session-create / session-update	Python 客户端内存/文件属性改为显式加密会话配置；无隐式凭据文件或属性读取 API
+P189BaseClient.headers	各动作 headers	调用参数；不暴露宿主或其他会话凭据
+P189BaseClient.session	—	Python 运行时对象/锁/资源生命周期不适用；令牌刷新使用显式动作，不做隐式写入重试
+P189BaseClient.async_session	—	Python 运行时对象/锁/资源生命周期不适用；令牌刷新使用显式动作，不做隐式写入重试
+P189BaseClient.access_token	user-access-token	获取开放接口令牌；与登录 accessToken 区分
+P189BaseClient.close	—	Python 运行时对象/锁/资源生命周期不适用；令牌刷新使用显式动作，不做隐式写入重试
+P189BaseClient.request	request	直接接口或 JS 组合流程；同步/异步合一，交互登录分步调用，文件参数使用 sourcePath
+P189BaseClient.login	login	直接接口或 JS 组合流程；同步/异步合一，交互登录分步调用，文件参数使用 sourcePath
+P189BaseClient.login_with_refresh_token	login-with-refresh-token	直接接口或 JS 组合流程；同步/异步合一，交互登录分步调用，文件参数使用 sourcePath
+P189BaseClient.login_with_session_key	login-with-session-key	直接接口或 JS 组合流程；同步/异步合一，交互登录分步调用，文件参数使用 sourcePath
+P189BaseClient.login_with_sso_cookie	login-with-sso-cookie	直接接口或 JS 组合流程；同步/异步合一，交互登录分步调用，文件参数使用 sourcePath
+P189BaseClient.login_with_token	login-with-token	直接接口或 JS 组合流程；同步/异步合一，交互登录分步调用，文件参数使用 sourcePath
+P189BaseClient.app_encrypt_conf	app-encrypt-conf	直接接口或 JS 组合流程；同步/异步合一，交互登录分步调用，文件参数使用 sourcePath
+P189BaseClient.login_app_conf	login-app-conf	直接接口或 JS 组合流程；同步/异步合一，交互登录分步调用，文件参数使用 sourcePath
+P189BaseClient.login_qrcode_state	login-qrcode-state	直接接口或 JS 组合流程；同步/异步合一，交互登录分步调用，文件参数使用 sourcePath
+P189BaseClient.login_qrcode_uuid	login-qrcode-uuid	直接接口或 JS 组合流程；同步/异步合一，交互登录分步调用，文件参数使用 sourcePath
+P189BaseClient.login_refresh_token	login-refresh-token	直接接口或 JS 组合流程；同步/异步合一，交互登录分步调用，文件参数使用 sourcePath
+P189BaseClient.login_session_pc	login-session-pc	直接接口或 JS 组合流程；同步/异步合一，交互登录分步调用，文件参数使用 sourcePath
+P189BaseClient.login_sso	login-sso	直接接口或 JS 组合流程；同步/异步合一，交互登录分步调用，文件参数使用 sourcePath
+P189BaseClient.login_submit	login-submit	直接接口或 JS 组合流程；同步/异步合一，交互登录分步调用，文件参数使用 sourcePath
+P189BaseClient.login_unify_pc	login-unify-pc	直接接口或 JS 组合流程；同步/异步合一，交互登录分步调用，文件参数使用 sourcePath
+P189BaseClient.login_unify_wap	login-unify-wap	直接接口或 JS 组合流程；同步/异步合一，交互登录分步调用，文件参数使用 sourcePath
+P189BaseClient.login_url	login-url	直接接口或 JS 组合流程；同步/异步合一，交互登录分步调用，文件参数使用 sourcePath
+P189BaseClient.user_access_token	user-access-token	直接接口或 JS 组合流程；同步/异步合一，交互登录分步调用，文件参数使用 sourcePath
+P189APIClient.token	session-create / session-update	Python 客户端内存/文件属性改为显式加密会话配置；无隐式凭据文件或属性读取 API
+P189APIClient.refresh_token	session-create / session-update	Python 客户端内存/文件属性改为显式加密会话配置；无隐式凭据文件或属性读取 API
+P189APIClient.session_key	session-create / session-update	Python 客户端内存/文件属性改为显式加密会话配置；无隐式凭据文件或属性读取 API
+P189APIClient.session_secret	session-create / session-update	Python 客户端内存/文件属性改为显式加密会话配置；无隐式凭据文件或属性读取 API
+P189APIClient.family_session_key	session-create / session-update	Python 客户端内存/文件属性改为显式加密会话配置；无隐式凭据文件或属性读取 API
+P189APIClient.family_session_secret	session-create / session-update	Python 客户端内存/文件属性改为显式加密会话配置；无隐式凭据文件或属性读取 API
+P189APIClient.session_data	session-create / session-update	Python 客户端内存/文件属性改为显式加密会话配置；无隐式凭据文件或属性读取 API
+P189APIClient.login	api-login	直接接口或 JS 组合流程；同步/异步合一，交互登录分步调用，文件参数使用 sourcePath
+P189APIClient.request_with_sign	api-request-with-sign	直接接口或 JS 组合流程；同步/异步合一，交互登录分步调用，文件参数使用 sourcePath
+P189APIClient.login_with_password	api-login-with-password	直接接口或 JS 组合流程；同步/异步合一，交互登录分步调用，文件参数使用 sourcePath
+P189APIClient.login_with_qrcode	api-login-with-qrcode	直接接口或 JS 组合流程；同步/异步合一，交互登录分步调用，文件参数使用 sourcePath
+P189APIClient.make_signed_headers	api-make-signed-headers	直接接口或 JS 组合流程；同步/异步合一，交互登录分步调用，文件参数使用 sourcePath
+P189APIClient.make_url_and_signed_headers	api-make-url-and-signed-headers	直接接口或 JS 组合流程；同步/异步合一，交互登录分步调用，文件参数使用 sourcePath
+P189APIClient.download_url	api-download-url	直接接口或 JS 组合流程；同步/异步合一，交互登录分步调用，文件参数使用 sourcePath
+P189APIClient.download_url_info	api-download-url-info	直接接口或 JS 组合流程；同步/异步合一，交互登录分步调用，文件参数使用 sourcePath
+P189APIClient.download_url_video	api-download-url-video	直接接口或 JS 组合流程；同步/异步合一，交互登录分步调用，文件参数使用 sourcePath
+P189APIClient.fs_list	api-fs-list	直接接口或 JS 组合流程；同步/异步合一，交互登录分步调用，文件参数使用 sourcePath
+P189APIClient.upload_generate_rsakey	api-upload-generate-rsakey	直接接口或 JS 组合流程；同步/异步合一，交互登录分步调用，文件参数使用 sourcePath
+P189APIClient.upload_commit	api-upload-commit	直接接口或 JS 组合流程；同步/异步合一，交互登录分步调用，文件参数使用 sourcePath
+P189APIClient.upload_headers	api-upload-headers	直接接口或 JS 组合流程；同步/异步合一，交互登录分步调用，文件参数使用 sourcePath
+P189APIClient.upload_init	api-upload-init	直接接口或 JS 组合流程；同步/异步合一，交互登录分步调用，文件参数使用 sourcePath
+P189APIClient.upload_url	api-upload-url	直接接口或 JS 组合流程；同步/异步合一，交互登录分步调用，文件参数使用 sourcePath
+P189Client.session_key	session-create / session-update	Python 客户端内存/文件属性改为显式加密会话配置；无隐式凭据文件或属性读取 API
+P189Client.upload_rsakey	upload-generate-rsakey	上传流程自动获取；底层查询返回公钥元数据
+P189Client.upload_rsa_pubkey	upload-generate-rsakey	上传流程自动获取；底层查询返回公钥元数据
+P189Client.upload_rsa_pkid	upload-generate-rsakey	上传流程自动获取；底层查询返回公钥元数据
+P189Client.request_with_sign	request-with-sign	直接接口或 JS 组合流程；同步/异步合一，交互登录分步调用，文件参数使用 sourcePath
+P189Client.login	login	直接接口或 JS 组合流程；同步/异步合一，交互登录分步调用，文件参数使用 sourcePath
+P189Client.login_with_password	login-with-password	直接接口或 JS 组合流程；同步/异步合一，交互登录分步调用，文件参数使用 sourcePath
+P189Client.login_with_password2	login-with-password2	直接接口或 JS 组合流程；同步/异步合一，交互登录分步调用，文件参数使用 sourcePath
+P189Client.login_with_qrcode	login-with-qrcode	直接接口或 JS 组合流程；同步/异步合一，交互登录分步调用，文件参数使用 sourcePath
+P189Client.download_url	download-url	直接接口或 JS 组合流程；同步/异步合一，交互登录分步调用，文件参数使用 sourcePath
+P189Client.download_url_info	download-url-info	直接接口或 JS 组合流程；同步/异步合一，交互登录分步调用，文件参数使用 sourcePath
+P189Client.download_url_video	download-url-video	直接接口或 JS 组合流程；同步/异步合一，交互登录分步调用，文件参数使用 sourcePath
+P189Client.download_url_video_portal	download-url-video-portal	直接接口或 JS 组合流程；同步/异步合一，交互登录分步调用，文件参数使用 sourcePath
+P189Client.fs_batch	fs-batch	直接接口或 JS 组合流程；同步/异步合一，交互登录分步调用，文件参数使用 sourcePath
+P189Client.fs_batch_cancel	fs-batch-cancel	直接接口或 JS 组合流程；同步/异步合一，交互登录分步调用，文件参数使用 sourcePath
+P189Client.fs_batch_check	fs-batch-check	直接接口或 JS 组合流程；同步/异步合一，交互登录分步调用，文件参数使用 sourcePath
+P189Client.fs_batch_conflict	fs-batch-conflict	直接接口或 JS 组合流程；同步/异步合一，交互登录分步调用，文件参数使用 sourcePath
+P189Client.fs_batch_manage	fs-batch-manage	直接接口或 JS 组合流程；同步/异步合一，交互登录分步调用，文件参数使用 sourcePath
+P189Client.fs_clear_recycle	fs-clear-recycle	直接接口或 JS 组合流程；同步/异步合一，交互登录分步调用，文件参数使用 sourcePath
+P189Client.fs_copy	fs-copy	直接接口或 JS 组合流程；同步/异步合一，交互登录分步调用，文件参数使用 sourcePath
+P189Client.fs_delete	fs-delete	直接接口或 JS 组合流程；同步/异步合一，交互登录分步调用，文件参数使用 sourcePath
+P189Client.fs_dirs	fs-dirs	直接接口或 JS 组合流程；同步/异步合一，交互登录分步调用，文件参数使用 sourcePath
+P189Client.fs_dirs_portal	fs-dirs-portal	直接接口或 JS 组合流程；同步/异步合一，交互登录分步调用，文件参数使用 sourcePath
+P189Client.fs_empty_recycle	fs-empty-recycle	直接接口或 JS 组合流程；同步/异步合一，交互登录分步调用，文件参数使用 sourcePath
+P189Client.fs_family_from	fs-family-from	直接接口或 JS 组合流程；同步/异步合一，交互登录分步调用，文件参数使用 sourcePath
+P189Client.fs_family_list	fs-family-list	直接接口或 JS 组合流程；同步/异步合一，交互登录分步调用，文件参数使用 sourcePath
+P189Client.fs_family_to	fs-family-to	直接接口或 JS 组合流程；同步/异步合一，交互登录分步调用，文件参数使用 sourcePath
+P189Client.fs_folder_info	fs-folder-info	直接接口或 JS 组合流程；同步/异步合一，交互登录分步调用，文件参数使用 sourcePath
+P189Client.fs_info	fs-info	直接接口或 JS 组合流程；同步/异步合一，交互登录分步调用，文件参数使用 sourcePath
+P189Client.fs_info_portal	fs-info-portal	直接接口或 JS 组合流程；同步/异步合一，交互登录分步调用，文件参数使用 sourcePath
+P189Client.fs_info_v2_portal	fs-info-v2-portal	直接接口或 JS 组合流程；同步/异步合一，交互登录分步调用，文件参数使用 sourcePath
+P189Client.fs_list	fs-list	直接接口或 JS 组合流程；同步/异步合一，交互登录分步调用，文件参数使用 sourcePath
+P189Client.fs_list_portal	fs-list-portal	直接接口或 JS 组合流程；同步/异步合一，交互登录分步调用，文件参数使用 sourcePath
+P189Client.fs_mkdir	fs-mkdir	直接接口或 JS 组合流程；同步/异步合一，交互登录分步调用，文件参数使用 sourcePath
+P189Client.fs_mkdir_portal	fs-mkdir-portal	直接接口或 JS 组合流程；同步/异步合一，交互登录分步调用，文件参数使用 sourcePath
+P189Client.fs_move	fs-move	直接接口或 JS 组合流程；同步/异步合一，交互登录分步调用，文件参数使用 sourcePath
+P189Client.fs_recyclebin_list	fs-recyclebin-list	直接接口或 JS 组合流程；同步/异步合一，交互登录分步调用，文件参数使用 sourcePath
+P189Client.fs_recyclebin_list_v3	fs-recyclebin-list-v3	直接接口或 JS 组合流程；同步/异步合一，交互登录分步调用，文件参数使用 sourcePath
+P189Client.fs_recyclebin_list_portal	fs-recyclebin-list-portal	直接接口或 JS 组合流程；同步/异步合一，交互登录分步调用，文件参数使用 sourcePath
+P189Client.fs_recyclebin_list_v2_portal	fs-recyclebin-list-v2-portal	直接接口或 JS 组合流程；同步/异步合一，交互登录分步调用，文件参数使用 sourcePath
+P189Client.fs_recyclebin_list_v3_portal	fs-recyclebin-list-v3-portal	直接接口或 JS 组合流程；同步/异步合一，交互登录分步调用，文件参数使用 sourcePath
+P189Client.fs_rename_dir	fs-rename-dir	直接接口或 JS 组合流程；同步/异步合一，交互登录分步调用，文件参数使用 sourcePath
+P189Client.fs_rename_file	fs-rename-file	直接接口或 JS 组合流程；同步/异步合一，交互登录分步调用，文件参数使用 sourcePath
+P189Client.fs_rename_portal	fs-rename-portal	直接接口或 JS 组合流程；同步/异步合一，交互登录分步调用，文件参数使用 sourcePath
+P189Client.fs_restore	fs-restore	直接接口或 JS 组合流程；同步/异步合一，交互登录分步调用，文件参数使用 sourcePath
+P189Client.fs_search	fs-search	直接接口或 JS 组合流程；同步/异步合一，交互登录分步调用，文件参数使用 sourcePath
+P189Client.fs_search_portal	fs-search-portal	直接接口或 JS 组合流程；同步/异步合一，交互登录分步调用，文件参数使用 sourcePath
+P189Client.share_cancel	share-cancel	直接接口或 JS 组合流程；同步/异步合一，交互登录分步调用，文件参数使用 sourcePath
+P189Client.share_check_access_token	share-check-access-token	直接接口或 JS 组合流程；同步/异步合一，交互登录分步调用，文件参数使用 sourcePath
+P189Client.share_create	share-create	直接接口或 JS 组合流程；同步/异步合一，交互登录分步调用，文件参数使用 sourcePath
+P189Client.share_create_batch	share-create-batch	直接接口或 JS 组合流程；同步/异步合一，交互登录分步调用，文件参数使用 sourcePath
+P189Client.share_fs_list	share-fs-list	直接接口或 JS 组合流程；同步/异步合一，交互登录分步调用，文件参数使用 sourcePath
+P189Client.share_fs_list_portal	share-fs-list-portal	直接接口或 JS 组合流程；同步/异步合一，交互登录分步调用，文件参数使用 sourcePath
+P189Client.share_info	share-info	直接接口或 JS 组合流程；同步/异步合一，交互登录分步调用，文件参数使用 sourcePath
+P189Client.share_info_by_code	share-info-by-code	直接接口或 JS 组合流程；同步/异步合一，交互登录分步调用，文件参数使用 sourcePath
+P189Client.share_info_by_code_v2	share-info-by-code-v2	直接接口或 JS 组合流程；同步/异步合一，交互登录分步调用，文件参数使用 sourcePath
+P189Client.share_last_save_path	share-last-save-path	直接接口或 JS 组合流程；同步/异步合一，交互登录分步调用，文件参数使用 sourcePath
+P189Client.share_list	share-list	直接接口或 JS 组合流程；同步/异步合一，交互登录分步调用，文件参数使用 sourcePath
+P189Client.share_save	share-save	直接接口或 JS 组合流程；同步/异步合一，交互登录分步调用，文件参数使用 sourcePath
+P189Client.upload_generate_rsakey	upload-generate-rsakey	直接接口或 JS 组合流程；同步/异步合一，交互登录分步调用，文件参数使用 sourcePath
+P189Client.upload_init	upload-init	直接接口或 JS 组合流程；同步/异步合一，交互登录分步调用，文件参数使用 sourcePath
+P189Client.upload_init_portal	upload-init-portal	直接接口或 JS 组合流程；同步/异步合一，交互登录分步调用，文件参数使用 sourcePath
+P189Client.upload_list_latest	upload-list-latest	直接接口或 JS 组合流程；同步/异步合一，交互登录分步调用，文件参数使用 sourcePath
+P189Client.upload_multipart_commit	upload-multipart-commit	直接接口或 JS 组合流程；同步/异步合一，交互登录分步调用，文件参数使用 sourcePath
+P189Client.upload_multipart_init	upload-multipart-init	直接接口或 JS 组合流程；同步/异步合一，交互登录分步调用，文件参数使用 sourcePath
+P189Client.upload_multipart_list_parts	upload-multipart-list-parts	直接接口或 JS 组合流程；同步/异步合一，交互登录分步调用，文件参数使用 sourcePath
+P189Client.upload_multipart_second_check	upload-multipart-second-check	直接接口或 JS 组合流程；同步/异步合一，交互登录分步调用，文件参数使用 sourcePath
+P189Client.upload_multipart_url	upload-multipart-url	直接接口或 JS 组合流程；同步/异步合一，交互登录分步调用，文件参数使用 sourcePath
+P189Client.upload_file	upload-file	直接接口或 JS 组合流程；同步/异步合一，交互登录分步调用，文件参数使用 sourcePath
+P189Client.user_draw	user-draw	直接接口或 JS 组合流程；同步/异步合一，交互登录分步调用，文件参数使用 sourcePath
+P189Client.user_get	user-get	直接接口或 JS 组合流程；同步/异步合一，交互登录分步调用，文件参数使用 sourcePath
+P189Client.user_info	user-info	直接接口或 JS 组合流程；同步/异步合一，交互登录分步调用，文件参数使用 sourcePath
+P189Client.user_info_portal	user-info-portal	直接接口或 JS 组合流程；同步/异步合一，交互登录分步调用，文件参数使用 sourcePath
+P189Client.user_info_base	user-info-base	直接接口或 JS 组合流程；同步/异步合一，交互登录分步调用，文件参数使用 sourcePath
+P189Client.user_info_base_portal	user-info-base-portal	直接接口或 JS 组合流程；同步/异步合一，交互登录分步调用，文件参数使用 sourcePath
+P189Client.user_info_brief	user-info-brief	直接接口或 JS 组合流程；同步/异步合一，交互登录分步调用，文件参数使用 sourcePath
+P189Client.user_info_ext	user-info-ext	直接接口或 JS 组合流程；同步/异步合一，交互登录分步调用，文件参数使用 sourcePath
+P189Client.user_info_ext_portal	user-info-ext-portal	直接接口或 JS 组合流程；同步/异步合一，交互登录分步调用，文件参数使用 sourcePath
+P189Client.user_logined_infos	user-logined-infos	直接接口或 JS 组合流程；同步/异步合一，交互登录分步调用，文件参数使用 sourcePath
+P189Client.user_logined_infos_portal	user-logined-infos-portal	直接接口或 JS 组合流程；同步/异步合一，交互登录分步调用，文件参数使用 sourcePath
+P189Client.user_logined_infos_v2	user-logined-infos-v2	直接接口或 JS 组合流程；同步/异步合一，交互登录分步调用，文件参数使用 sourcePath
+P189Client.user_logined_infos_v2_portal	user-logined-infos-v2-portal	直接接口或 JS 组合流程；同步/异步合一，交互登录分步调用，文件参数使用 sourcePath
+P189Client.user_privileges	user-privileges	直接接口或 JS 组合流程；同步/异步合一，交互登录分步调用，文件参数使用 sourcePath
+P189Client.user_privileges_portal	user-privileges-portal	直接接口或 JS 组合流程；同步/异步合一，交互登录分步调用，文件参数使用 sourcePath
+P189Client.user_privileges_v2	user-privileges-v2	直接接口或 JS 组合流程；同步/异步合一，交互登录分步调用，文件参数使用 sourcePath
+P189Client.user_privileges_v2_portal	user-privileges-v2-portal	直接接口或 JS 组合流程；同步/异步合一，交互登录分步调用，文件参数使用 sourcePath
+P189Client.user_security_query	user-security-query	直接接口或 JS 组合流程；同步/异步合一，交互登录分步调用，文件参数使用 sourcePath
+P189Client.user_size_info	user-size-info	直接接口或 JS 组合流程；同步/异步合一，交互登录分步调用，文件参数使用 sourcePath
+P189Client.user_size_info_portal	user-size-info-portal	直接接口或 JS 组合流程；同步/异步合一，交互登录分步调用，文件参数使用 sourcePath
+P189Client.user_sign	user-sign	直接接口或 JS 组合流程；同步/异步合一，交互登录分步调用，文件参数使用 sourcePath
+P189Client.user_sign_portal	user-sign-portal	直接接口或 JS 组合流程；同步/异步合一，交互登录分步调用，文件参数使用 sourcePath

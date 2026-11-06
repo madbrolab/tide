@@ -1,8 +1,8 @@
-# 115 连接器 2.0.1
+# 115 连接器 2.0.2
 
 按 Tide SDK 2 重写的纯 JavaScript 插件。部署使用现有 QuickJS 和宿主 SDK，不包含 Python、Node.js、额外运行环境或伴随进程，不修改基座。常规动作调用结束后释放运行时；没有注册常驻服务。
 
-[官方加密包](https://github.com/madbrolab/tide/blob/main/store/packages/cloud115-2.0.1-encrypted.zip) · [对应源码](https://github.com/madbrolab/tide/blob/main/store/packages/cloud115-2.0.1-corresponding-source.zip) · [动作契约](../store/interfaces/com.tide.cloud115/operations.json) · [操作覆盖表](../store/interfaces/com.tide.cloud115/P115C实现覆盖.tsv) · [完整清单](../store/interfaces/com.tide.cloud115/P115C完整覆盖.tsv)
+[官方加密包](https://github.com/madbrolab/tide/blob/main/store/packages/cloud115-2.0.2-encrypted.zip) · [对应源码](https://github.com/madbrolab/tide/blob/main/store/packages/cloud115-2.0.2-corresponding-source.zip) · [动作契约](../store/interfaces/com.tide.cloud115/operations.json) · [操作覆盖表](../store/interfaces/com.tide.cloud115/P115C实现覆盖.tsv) · [完整清单](../store/interfaces/com.tide.cloud115/P115C完整覆盖.tsv)
 
 ## 覆盖范围
 
@@ -58,7 +58,7 @@ const result = await ctx.invoke({
 
 ```sh
 npm ci --prefix sdk/packager
-node sdk/packager/pack.mjs --dir plugins/cloud115 --out cloud115-2.0.1-encrypted.zip
+node sdk/packager/pack.mjs --dir plugins/cloud115 --out cloud115-2.0.2-encrypted.zip
 ```
 
 可选的重新生成与测试（先取得上述固定提交的 P115C 仓库，离线对照还需要该仓库的 Python 依赖）：
@@ -74,9 +74,14 @@ node --test plugins/cloud115/tests/library.test.mjs
 
 main.js 是分片构建输入，保留纯函数标注供官方构建器裁剪。验收使用官方分片构建和真实宿主测试，不走将整个源码编译成单个旧格式产物的检查路径。每个交付分片分别受源码、字节码大小与 24 MiB JS 堆 限制。
 
-已做离线协议、属性、工具函数对照，以及摘要、分享隔离、分页、续传、SQLite、加密会话、密码加密和写入恢复测试。**没有用真实 115 账号逐项实测，也没有执行真实 115 上传、移动或删除。** 覆盖表表示实现映射，不代表全部方法已在线验证；上游接口、风控和账号差异仍可能产生错误。
+已做离线协议、属性、工具函数对照，以及摘要、分享隔离、分页、续传、SQLite、加密会话、密码加密和写入恢复测试。**没有用真实 115 账号逐项实测。** 已实测的只有挂载插件用到的部分：Cookie 方式的列目录、取下载链接、生活记录、容量，以及分片上传、新建目录、改名和删除（均为只读或测试目录内的操作）。 覆盖表表示实现映射，不代表全部方法已在线验证；上游接口、风控和账号差异仍可能产生错误。
 
 本插件整体按 GPL-3.0 分发，保留 P115C 的 MIT 声明。提取码转换包含 p115pickcode 0.0.5 的 JS 移植；许可证见 [NOTICE.txt](../store/interfaces/com.tide.cloud115/NOTICE.txt)，提供对应源码。
+
+## 2.0.2 更新
+
+- 修复上传初始化（含秒传）时解密 115 响应失败（"能力参数无效"）：115 在密文后附带了不足一个分组的字节，现在只解密完整分组，与 p115client 一致。
+- 首次用真实账号验证上传：Cookie 方式的分片上传、合并与秒传初始化已在挂载写入测试中通过；其他上传入口仍未逐项实测。
 
 ## 2.0.1 更新
 

@@ -150,7 +150,8 @@ export interface Context {
   readonly secrets: {
     seal(purpose: string, value: string): Promise<string>;
     open(purpose: string, sealed: string): Promise<string>;
-    issue(grant: { uuid: string; kind: "cookie" | "bearer"; value: string }): Promise<{ kind: string; handle: string }>;
+    /** `target` is required for providers declaring `credentialTargets` and must be one of them. */
+    issue(grant: { uuid: string; kind: "cookie" | "bearer"; value: string; target?: string }): Promise<{ kind: string; handle: string }>;
   };
   readonly store: {
     get<T extends JSONValue = JSONValue>(key: string): Promise<T | null>;

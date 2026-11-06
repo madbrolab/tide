@@ -411,7 +411,7 @@
     },
     {
       "path": "ctx.secrets.issue",
-      "summary": "为父执行签发临时账号凭据句柄，不落业务明文",
+      "summary": "为父执行签发临时账号凭据句柄，不落业务明文；多目标提供方须传 target",
       "execution": "host",
       "lifetime": "both",
       "signature": "issue(grant: CredentialGrant): Promise<CredentialHandle>"

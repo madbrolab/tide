@@ -33,7 +33,14 @@ export async function pack(pluginDir,output){
   if(manifest.sdk!==2)throw Error('manifest.sdk 必须为 2');
   if(!/^com(?:\.[a-z][a-z0-9]*){2,}$/.test(manifest.id)||manifest.id.length>160)throw Error('需要有效的插件包 ID');
   if(!/^\d+\.\d+\.\d+$/.test(manifest.version))throw Error('需要三段版本号');
-  if(manifest.console)throw Error('第三方界面使用 ui.json');
+  if(manifest.console){
+    for(const name of ['console.mjs','console.css']){
+      try{files[name]=await readFile(join(dir,name))}catch(e){
+        if(e.code!=='ENOENT'||name!=='console.mjs')throw e;
+        files[name]=await readFile(join(dir,'dist',name));
+      }
+    }
+  }
   const groups=new Map(),actions=Object.entries(manifest.actions??{});
   if(!actions.length||actions.length>1024)throw Error('动作数量应为 1–1024');
   for(const [name,action] of actions){

@@ -1,0 +1,1665 @@
+{
+  "settings-schema": {
+    "summary": "设置项说明",
+    "input": {
+      "type": [
+        "object"
+      ],
+      "description": "调用参数",
+      "properties": {}
+    },
+    "output": {
+      "type": [
+        "array"
+      ],
+      "description": "分组的设置项",
+      "items": {
+        "type": [
+          "object"
+        ],
+        "description": "分组",
+        "additionalProperties": true
+      }
+    },
+    "example": {
+      "args": {},
+      "result": []
+    }
+  },
+  "settings-get": {
+    "summary": "读取设置",
+    "input": {
+      "type": [
+        "object"
+      ],
+      "description": "调用参数",
+      "properties": {}
+    },
+    "output": {
+      "type": [
+        "object"
+      ],
+      "description": "values、defaults、revision",
+      "additionalProperties": true
+    },
+    "example": {
+      "args": {},
+      "result": {
+        "revision": 0
+      }
+    }
+  },
+  "settings-set": {
+    "summary": "保存设置",
+    "input": {
+      "type": [
+        "object"
+      ],
+      "description": "调用参数",
+      "properties": {
+        "values": {
+          "type": [
+            "object"
+          ],
+          "description": "要修改的设置",
+          "properties": {
+            "mountPoint": {
+              "type": [
+                "string"
+              ],
+              "description": "挂载点"
+            },
+            "allowOther": {
+              "type": [
+                "boolean"
+              ],
+              "description": "允许其他用户访问"
+            },
+            "uid": {
+              "type": [
+                "integer"
+              ],
+              "description": "文件所有者 UID"
+            },
+            "gid": {
+              "type": [
+                "integer"
+              ],
+              "description": "文件所属组 GID"
+            },
+            "dirMode": {
+              "type": [
+                "string"
+              ],
+              "description": "目录权限"
+            },
+            "fileMode": {
+              "type": [
+                "string"
+              ],
+              "description": "文件权限"
+            },
+            "readOnly": {
+              "type": [
+                "boolean"
+              ],
+              "description": "全局只读"
+            },
+            "attrTimeoutSec": {
+              "type": [
+                "integer"
+              ],
+              "description": "内核属性缓存"
+            },
+            "entryTimeoutSec": {
+              "type": [
+                "integer"
+              ],
+              "description": "内核目录项缓存"
+            },
+            "negativeTimeoutSec": {
+              "type": [
+                "integer"
+              ],
+              "description": "内核「不存在」缓存"
+            },
+            "logLevel": {
+              "type": [
+                "string"
+              ],
+              "description": "日志级别"
+            },
+            "dirTtlHotSec": {
+              "type": [
+                "integer"
+              ],
+              "description": "常用目录有效期"
+            },
+            "dirTtlColdSec": {
+              "type": [
+                "integer"
+              ],
+              "description": "其他目录有效期"
+            },
+            "hotWindowSec": {
+              "type": [
+                "integer"
+              ],
+              "description": "判定为常用目录的时间窗"
+            },
+            "negativeTtlSec": {
+              "type": [
+                "integer"
+              ],
+              "description": "不存在的文件名缓存"
+            },
+            "staleWhileRevalidate": {
+              "type": [
+                "boolean"
+              ],
+              "description": "过期后先返回旧数据"
+            },
+            "memoryEntries": {
+              "type": [
+                "integer"
+              ],
+              "description": "内存缓存条目上限"
+            },
+            "persist": {
+              "type": [
+                "boolean"
+              ],
+              "description": "目录缓存持久化"
+            },
+            "pruneDays": {
+              "type": [
+                "integer"
+              ],
+              "description": "清理多久未访问的目录"
+            },
+            "maxEntriesPerMount": {
+              "type": [
+                "integer"
+              ],
+              "description": "每个挂载项最多缓存"
+            },
+            "listPageSize": {
+              "type": [
+                "integer"
+              ],
+              "description": "列目录每页数量"
+            },
+            "duplicateNames": {
+              "type": [
+                "string"
+              ],
+              "description": "同名文件显示方式"
+            },
+            "linkTtlSec": {
+              "type": [
+                "integer"
+              ],
+              "description": "链接最长使用时间"
+            },
+            "linkRefreshBeforeSec": {
+              "type": [
+                "integer"
+              ],
+              "description": "提前刷新链接"
+            },
+            "maxLinks": {
+              "type": [
+                "integer"
+              ],
+              "description": "链接缓存上限"
+            },
+            "userAgent": {
+              "type": [
+                "string"
+              ],
+              "description": "下载 User-Agent"
+            },
+            "cacheDir": {
+              "type": [
+                "string"
+              ],
+              "description": "缓存目录"
+            },
+            "cacheMode": {
+              "type": [
+                "string"
+              ],
+              "description": "缓存模式"
+            },
+            "capacityGiB": {
+              "type": [
+                "integer"
+              ],
+              "description": "缓存总容量"
+            },
+            "quotaGiB": {
+              "type": [
+                "integer"
+              ],
+              "description": "单个挂载项配额"
+            },
+            "minFreePercent": {
+              "type": [
+                "integer"
+              ],
+              "description": "磁盘最少保留空闲"
+            },
+            "highWatermark": {
+              "type": [
+                "integer"
+              ],
+              "description": "开始淘汰的用量"
+            },
+            "lowWatermark": {
+              "type": [
+                "integer"
+              ],
+              "description": "淘汰到的用量"
+            },
+            "blockSizeMiB": {
+              "type": [
+                "string"
+              ],
+              "description": "数据块大小"
+            },
+            "headTailMiB": {
+              "type": [
+                "integer"
+              ],
+              "description": "头尾优先区大小"
+            },
+            "policy": {
+              "type": [
+                "string"
+              ],
+              "description": "淘汰策略"
+            },
+            "protectedPercent": {
+              "type": [
+                "integer"
+              ],
+              "description": "保护段占比"
+            },
+            "maxAgeDays": {
+              "type": [
+                "integer"
+              ],
+              "description": "数据块最长保留"
+            },
+            "readaheadMinBlocks": {
+              "type": [
+                "integer"
+              ],
+              "description": "顺序读预读起始"
+            },
+            "readaheadMaxBlocks": {
+              "type": [
+                "integer"
+              ],
+              "description": "顺序读预读上限"
+            },
+            "streamsPerFile": {
+              "type": [
+                "integer"
+              ],
+              "description": "单文件并发下载"
+            },
+            "downloadsPerAccount": {
+              "type": [
+                "integer"
+              ],
+              "description": "单账号并发下载"
+            },
+            "requestTimeoutSec": {
+              "type": [
+                "integer"
+              ],
+              "description": "下载请求超时"
+            },
+            "retries": {
+              "type": [
+                "integer"
+              ],
+              "description": "下载失败重试"
+            },
+            "listQps": {
+              "type": [
+                "number",
+                "integer"
+              ],
+              "description": "列目录速率"
+            },
+            "listBurst": {
+              "type": [
+                "integer"
+              ],
+              "description": "列目录突发"
+            },
+            "listConcurrency": {
+              "type": [
+                "integer"
+              ],
+              "description": "列目录并发"
+            },
+            "riskBackoffMaxSec": {
+              "type": [
+                "integer"
+              ],
+              "description": "风控退避上限"
+            },
+            "pollEnabled": {
+              "type": [
+                "boolean"
+              ],
+              "description": "轮询网盘变更"
+            },
+            "pollIntervalSec": {
+              "type": [
+                "integer"
+              ],
+              "description": "轮询间隔"
+            },
+            "preheatEnabled": {
+              "type": [
+                "boolean"
+              ],
+              "description": "定时预热目录"
+            },
+            "preheatWindow": {
+              "type": [
+                "string"
+              ],
+              "description": "预热时段"
+            },
+            "preheatDepth": {
+              "type": [
+                "integer"
+              ],
+              "description": "预热深度"
+            },
+            "preheatPaths": {
+              "type": [
+                "array"
+              ],
+              "description": "预热目录",
+              "items": {
+                "type": [
+                  "string"
+                ],
+                "description": "路径"
+              }
+            },
+            "writeEnabled": {
+              "type": [
+                "boolean"
+              ],
+              "description": "允许写入"
+            },
+            "stagingDir": {
+              "type": [
+                "string"
+              ],
+              "description": "上传暂存目录"
+            },
+            "uploadConcurrency": {
+              "type": [
+                "integer"
+              ],
+              "description": "上传并发"
+            },
+            "uploadDelaySec": {
+              "type": [
+                "integer"
+              ],
+              "description": "关闭后开始上传的等待时间"
+            },
+            "conflict": {
+              "type": [
+                "string"
+              ],
+              "description": "同名冲突"
+            }
+          }
+        },
+        "revision": {
+          "type": [
+            "integer"
+          ],
+          "description": "读取时的版本，用于防止覆盖他人修改"
+        }
+      },
+      "required": [
+        "values"
+      ]
+    },
+    "output": {
+      "type": [
+        "object"
+      ],
+      "description": "保存后的设置",
+      "additionalProperties": true
+    },
+    "example": {
+      "args": {
+        "values": {
+          "capacityGiB": 20
+        }
+      },
+      "result": {}
+    }
+  },
+  "settings-reset": {
+    "summary": "恢复默认设置",
+    "input": {
+      "type": [
+        "object"
+      ],
+      "description": "调用参数",
+      "properties": {
+        "keys": {
+          "type": [
+            "array"
+          ],
+          "description": "要恢复的设置项，省略表示全部",
+          "items": {
+            "type": [
+              "string"
+            ],
+            "description": "设置项"
+          }
+        }
+      }
+    },
+    "output": {
+      "type": [
+        "object"
+      ],
+      "description": "恢复后的设置",
+      "additionalProperties": true
+    },
+    "example": {
+      "args": {
+        "keys": [
+          "capacityGiB"
+        ]
+      },
+      "result": {}
+    }
+  },
+  "mounts": {
+    "summary": "列出挂载项",
+    "input": {
+      "type": [
+        "object"
+      ],
+      "description": "调用参数",
+      "properties": {}
+    },
+    "output": {
+      "type": [
+        "array"
+      ],
+      "description": "挂载项",
+      "items": {
+        "type": [
+          "object"
+        ],
+        "description": "挂载项",
+        "additionalProperties": true
+      }
+    },
+    "example": {
+      "args": {},
+      "result": []
+    }
+  },
+  "mount-save": {
+    "summary": "新建或修改挂载项",
+    "input": {
+      "type": [
+        "object"
+      ],
+      "description": "调用参数",
+      "properties": {
+        "id": {
+          "type": [
+            "string"
+          ],
+          "description": "修改时的挂载项 ID"
+        },
+        "updated": {
+          "type": [
+            "integer"
+          ],
+          "description": "读取时的更新时间，用于防止覆盖"
+        },
+        "name": {
+          "type": [
+            "string"
+          ],
+          "description": "挂载目录名"
+        },
+        "account": {
+          "type": [
+            "string"
+          ],
+          "description": "账号中心的账号 UUID"
+        },
+        "kind": {
+          "type": [
+            "string"
+          ],
+          "description": "连接方式，省略时用账号首选方式"
+        },
+        "root": {
+          "type": [
+            "object"
+          ],
+          "description": "远端起始目录",
+          "properties": {
+            "id": {
+              "type": [
+                "string"
+              ],
+              "description": "目录 ID"
+            },
+            "path": {
+              "type": [
+                "string"
+              ],
+              "description": "显示路径"
+            }
+          }
+        },
+        "enabled": {
+          "type": [
+            "boolean"
+          ],
+          "description": "是否启用"
+        },
+        "readOnly": {
+          "type": [
+            "boolean"
+          ],
+          "description": "是否只读"
+        },
+        "order": {
+          "type": [
+            "integer"
+          ],
+          "description": "显示顺序"
+        },
+        "note": {
+          "type": [
+            "string"
+          ],
+          "description": "备注"
+        },
+        "overrides": {
+          "type": [
+            "object"
+          ],
+          "description": "覆盖全局的设置",
+          "properties": {
+            "dirTtlHotSec": {
+              "type": [
+                "integer"
+              ],
+              "description": "常用目录有效期"
+            },
+            "dirTtlColdSec": {
+              "type": [
+                "integer"
+              ],
+              "description": "其他目录有效期"
+            },
+            "negativeTtlSec": {
+              "type": [
+                "integer"
+              ],
+              "description": "不存在的文件名缓存"
+            },
+            "linkTtlSec": {
+              "type": [
+                "integer"
+              ],
+              "description": "链接最长使用时间"
+            },
+            "userAgent": {
+              "type": [
+                "string"
+              ],
+              "description": "下载 User-Agent"
+            },
+            "cacheMode": {
+              "type": [
+                "string"
+              ],
+              "description": "缓存模式"
+            },
+            "quotaGiB": {
+              "type": [
+                "integer"
+              ],
+              "description": "单个挂载项配额"
+            },
+            "downloadsPerAccount": {
+              "type": [
+                "integer"
+              ],
+              "description": "单账号并发下载"
+            },
+            "listQps": {
+              "type": [
+                "number",
+                "integer"
+              ],
+              "description": "列目录速率"
+            },
+            "listBurst": {
+              "type": [
+                "integer"
+              ],
+              "description": "列目录突发"
+            },
+            "listConcurrency": {
+              "type": [
+                "integer"
+              ],
+              "description": "列目录并发"
+            },
+            "pollEnabled": {
+              "type": [
+                "boolean"
+              ],
+              "description": "轮询网盘变更"
+            },
+            "pollIntervalSec": {
+              "type": [
+                "integer"
+              ],
+              "description": "轮询间隔"
+            },
+            "preheatEnabled": {
+              "type": [
+                "boolean"
+              ],
+              "description": "定时预热目录"
+            },
+            "preheatDepth": {
+              "type": [
+                "integer"
+              ],
+              "description": "预热深度"
+            },
+            "preheatPaths": {
+              "type": [
+                "array"
+              ],
+              "description": "预热目录",
+              "items": {
+                "type": [
+                  "string"
+                ],
+                "description": "路径"
+              }
+            }
+          }
+        }
+      },
+      "required": [
+        "name",
+        "account"
+      ]
+    },
+    "output": {
+      "type": [
+        "object"
+      ],
+      "description": "挂载项",
+      "additionalProperties": true
+    },
+    "example": {
+      "args": {
+        "name": "115",
+        "account": "1"
+      },
+      "result": {}
+    }
+  },
+  "mount-remove": {
+    "summary": "删除挂载项",
+    "input": {
+      "type": [
+        "object"
+      ],
+      "description": "调用参数",
+      "properties": {
+        "id": {
+          "type": [
+            "string"
+          ],
+          "description": "挂载项 ID"
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "output": {
+      "type": [
+        "object"
+      ],
+      "description": "结果",
+      "additionalProperties": true
+    },
+    "example": {
+      "args": {
+        "id": "x"
+      },
+      "result": {
+        "removed": true
+      }
+    }
+  },
+  "accounts": {
+    "summary": "可挂载的账号",
+    "input": {
+      "type": [
+        "object"
+      ],
+      "description": "调用参数",
+      "properties": {}
+    },
+    "output": {
+      "type": [
+        "array"
+      ],
+      "description": "账号",
+      "items": {
+        "type": [
+          "object"
+        ],
+        "description": "账号",
+        "additionalProperties": true
+      }
+    },
+    "example": {
+      "args": {},
+      "result": []
+    }
+  },
+  "browse": {
+    "summary": "浏览账号目录",
+    "input": {
+      "type": [
+        "object"
+      ],
+      "description": "调用参数",
+      "properties": {
+        "account": {
+          "type": [
+            "string"
+          ],
+          "description": "账号 UUID"
+        },
+        "kind": {
+          "type": [
+            "string"
+          ],
+          "description": "连接方式"
+        },
+        "dir": {
+          "type": [
+            "string"
+          ],
+          "description": "目录 ID，省略为网盘根"
+        },
+        "cursor": {
+          "type": [
+            "object"
+          ],
+          "description": "上一页返回的游标",
+          "additionalProperties": true
+        },
+        "limit": {
+          "type": [
+            "integer"
+          ],
+          "description": "数量"
+        }
+      },
+      "required": [
+        "account"
+      ]
+    },
+    "output": {
+      "type": [
+        "object"
+      ],
+      "description": "目录列表",
+      "additionalProperties": true
+    },
+    "example": {
+      "args": {
+        "account": "1"
+      },
+      "result": {
+        "items": []
+      }
+    }
+  },
+  "drivers": {
+    "summary": "支持的网盘及能力",
+    "input": {
+      "type": [
+        "object"
+      ],
+      "description": "调用参数",
+      "properties": {}
+    },
+    "output": {
+      "type": [
+        "array"
+      ],
+      "description": "驱动",
+      "items": {
+        "type": [
+          "object"
+        ],
+        "description": "驱动",
+        "additionalProperties": true
+      }
+    },
+    "example": {
+      "args": {},
+      "result": []
+    }
+  },
+  "status": {
+    "summary": "挂载状态",
+    "input": {
+      "type": [
+        "object"
+      ],
+      "description": "调用参数",
+      "properties": {}
+    },
+    "output": {
+      "type": [
+        "object"
+      ],
+      "description": "引擎与挂载项状态",
+      "additionalProperties": true
+    },
+    "example": {
+      "args": {},
+      "result": {}
+    }
+  },
+  "invalidate": {
+    "summary": "请求刷新挂载目录",
+    "input": {
+      "type": [
+        "object"
+      ],
+      "description": "调用参数",
+      "properties": {
+        "path": {
+          "type": [
+            "string"
+          ],
+          "description": "挂载点内的路径，如 /115/电影，或完整挂载路径"
+        },
+        "recursive": {
+          "type": [
+            "boolean"
+          ],
+          "description": "是否包括子目录"
+        }
+      },
+      "required": [
+        "path"
+      ]
+    },
+    "output": {
+      "type": [
+        "object"
+      ],
+      "description": "结果",
+      "additionalProperties": true
+    },
+    "notes": "转存、整理等插件写入网盘后调用，引擎会尽快刷新对应目录缓存。",
+    "example": {
+      "args": {
+        "path": "/115/电影"
+      },
+      "result": {
+        "queued": true
+      }
+    }
+  },
+  "engine-config": {
+    "summary": "引擎读取完整配置",
+    "input": {
+      "type": [
+        "object"
+      ],
+      "description": "调用参数",
+      "properties": {}
+    },
+    "output": {
+      "type": [
+        "object"
+      ],
+      "description": "revision、settings、mounts",
+      "additionalProperties": true
+    },
+    "example": {
+      "args": {},
+      "result": {}
+    }
+  },
+  "engine-report": {
+    "summary": "引擎报告状态",
+    "input": {
+      "type": [
+        "object"
+      ],
+      "description": "调用参数",
+      "properties": {
+        "state": {
+          "type": [
+            "string"
+          ],
+          "description": "running、degraded、stopped 等"
+        },
+        "version": {
+          "type": [
+            "string"
+          ],
+          "description": "引擎版本"
+        },
+        "detail": {
+          "type": [
+            "string"
+          ],
+          "description": "说明"
+        },
+        "revision": {
+          "type": [
+            "integer"
+          ],
+          "description": "已应用的配置版本"
+        },
+        "mounts": {
+          "type": [
+            "object"
+          ],
+          "description": "按挂载项 ID 的状态",
+          "additionalProperties": true
+        }
+      }
+    },
+    "output": {
+      "type": [
+        "object"
+      ],
+      "description": "当前配置版本",
+      "additionalProperties": true
+    },
+    "example": {
+      "args": {
+        "state": "running"
+      },
+      "result": {
+        "revision": 0
+      }
+    }
+  },
+  "engine-invalidations": {
+    "summary": "引擎读取刷新请求",
+    "input": {
+      "type": [
+        "object"
+      ],
+      "description": "调用参数",
+      "properties": {
+        "after": {
+          "type": [
+            "integer"
+          ],
+          "description": "上次读取到的序号"
+        }
+      }
+    },
+    "output": {
+      "type": [
+        "object"
+      ],
+      "description": "刷新请求",
+      "additionalProperties": true
+    },
+    "example": {
+      "args": {
+        "after": 0
+      },
+      "result": {
+        "items": [],
+        "last": 0
+      }
+    }
+  },
+  "driver-info": {
+    "summary": "驱动能力",
+    "input": {
+      "type": [
+        "object"
+      ],
+      "description": "调用参数",
+      "properties": {
+        "mount": {
+          "type": [
+            "string"
+          ],
+          "description": "挂载项 ID"
+        }
+      },
+      "required": [
+        "mount"
+      ]
+    },
+    "output": {
+      "type": [
+        "object"
+      ],
+      "description": "能力",
+      "additionalProperties": true
+    },
+    "example": {
+      "args": {
+        "mount": "x"
+      },
+      "result": {}
+    }
+  },
+  "driver-list": {
+    "summary": "列目录",
+    "input": {
+      "type": [
+        "object"
+      ],
+      "description": "调用参数",
+      "properties": {
+        "mount": {
+          "type": [
+            "string"
+          ],
+          "description": "挂载项 ID"
+        },
+        "dir": {
+          "type": [
+            "string"
+          ],
+          "description": "目录 ID，省略为挂载根"
+        },
+        "cursor": {
+          "type": [
+            "object"
+          ],
+          "description": "上一页游标",
+          "additionalProperties": true
+        },
+        "limit": {
+          "type": [
+            "integer"
+          ],
+          "description": "每页数量"
+        },
+        "userAgent": {
+          "type": [
+            "string"
+          ],
+          "description": "User-Agent"
+        }
+      },
+      "required": [
+        "mount"
+      ]
+    },
+    "output": {
+      "type": [
+        "object"
+      ],
+      "description": "items、cursor、complete、total",
+      "additionalProperties": true
+    },
+    "example": {
+      "args": {
+        "mount": "x"
+      },
+      "result": {
+        "items": [],
+        "cursor": null,
+        "complete": true
+      }
+    }
+  },
+  "driver-stat": {
+    "summary": "按 ID 查询条目",
+    "input": {
+      "type": [
+        "object"
+      ],
+      "description": "调用参数",
+      "properties": {
+        "mount": {
+          "type": [
+            "string"
+          ],
+          "description": "挂载项 ID"
+        },
+        "id": {
+          "type": [
+            "string"
+          ],
+          "description": "条目 ID"
+        }
+      },
+      "required": [
+        "mount",
+        "id"
+      ]
+    },
+    "output": {
+      "type": [
+        "object"
+      ],
+      "description": "驱动返回的条目：id、parentId、name、dir、size、mtime、ctime、hash、version、ref",
+      "additionalProperties": true
+    },
+    "example": {
+      "args": {
+        "mount": "x",
+        "id": "1"
+      },
+      "result": {}
+    }
+  },
+  "driver-url": {
+    "summary": "取得下载链接",
+    "input": {
+      "type": [
+        "object"
+      ],
+      "description": "调用参数",
+      "properties": {
+        "mount": {
+          "type": [
+            "string"
+          ],
+          "description": "挂载项 ID"
+        },
+        "entry": {
+          "type": [
+            "object"
+          ],
+          "description": "驱动返回的条目：id、parentId、name、dir、size、mtime、ctime、hash、version、ref",
+          "additionalProperties": true
+        },
+        "userAgent": {
+          "type": [
+            "string"
+          ],
+          "description": "下载时使用的 User-Agent"
+        }
+      },
+      "required": [
+        "mount",
+        "entry"
+      ]
+    },
+    "output": {
+      "type": [
+        "object"
+      ],
+      "description": "url、headers、expiresAt、userAgent",
+      "additionalProperties": true
+    },
+    "notes": "下载必须使用返回的请求头和 userAgent；115 链接绑定 UA。",
+    "example": {
+      "args": {
+        "mount": "x",
+        "entry": {
+          "id": "1"
+        }
+      },
+      "result": {}
+    }
+  },
+  "driver-changes": {
+    "summary": "读取网盘变更",
+    "input": {
+      "type": [
+        "object"
+      ],
+      "description": "调用参数",
+      "properties": {
+        "mount": {
+          "type": [
+            "string"
+          ],
+          "description": "挂载项 ID"
+        },
+        "cursor": {
+          "type": [
+            "object"
+          ],
+          "description": "上次返回的游标",
+          "additionalProperties": true
+        }
+      },
+      "required": [
+        "mount"
+      ]
+    },
+    "output": {
+      "type": [
+        "object"
+      ],
+      "description": "events、cursor、complete",
+      "additionalProperties": true
+    },
+    "example": {
+      "args": {
+        "mount": "x"
+      },
+      "result": {
+        "events": []
+      }
+    }
+  },
+  "driver-quota": {
+    "summary": "网盘容量",
+    "input": {
+      "type": [
+        "object"
+      ],
+      "description": "调用参数",
+      "properties": {
+        "mount": {
+          "type": [
+            "string"
+          ],
+          "description": "挂载项 ID"
+        }
+      },
+      "required": [
+        "mount"
+      ]
+    },
+    "output": {
+      "type": [
+        "object"
+      ],
+      "description": "total、used、free",
+      "additionalProperties": true
+    },
+    "example": {
+      "args": {
+        "mount": "x"
+      },
+      "result": {}
+    }
+  },
+  "driver-mkdir": {
+    "summary": "新建目录",
+    "input": {
+      "type": [
+        "object"
+      ],
+      "description": "调用参数",
+      "properties": {
+        "mount": {
+          "type": [
+            "string"
+          ],
+          "description": "挂载项 ID"
+        },
+        "parent": {
+          "type": [
+            "string"
+          ],
+          "description": "父目录 ID"
+        },
+        "name": {
+          "type": [
+            "string"
+          ],
+          "description": "名称"
+        }
+      },
+      "required": [
+        "mount",
+        "parent",
+        "name"
+      ]
+    },
+    "output": {
+      "type": [
+        "object"
+      ],
+      "description": "驱动返回的条目：id、parentId、name、dir、size、mtime、ctime、hash、version、ref",
+      "additionalProperties": true
+    },
+    "example": {
+      "args": {
+        "mount": "x",
+        "parent": "0",
+        "name": "a"
+      },
+      "result": {}
+    }
+  },
+  "driver-rename": {
+    "summary": "改名",
+    "input": {
+      "type": [
+        "object"
+      ],
+      "description": "调用参数",
+      "properties": {
+        "mount": {
+          "type": [
+            "string"
+          ],
+          "description": "挂载项 ID"
+        },
+        "entry": {
+          "type": [
+            "object"
+          ],
+          "description": "驱动返回的条目：id、parentId、name、dir、size、mtime、ctime、hash、version、ref",
+          "additionalProperties": true
+        },
+        "name": {
+          "type": [
+            "string"
+          ],
+          "description": "新名称"
+        }
+      },
+      "required": [
+        "mount",
+        "entry",
+        "name"
+      ]
+    },
+    "output": {
+      "type": [
+        "object"
+      ],
+      "description": "驱动返回的条目：id、parentId、name、dir、size、mtime、ctime、hash、version、ref",
+      "additionalProperties": true
+    },
+    "example": {
+      "args": {
+        "mount": "x",
+        "entry": {
+          "id": "1"
+        },
+        "name": "b"
+      },
+      "result": {}
+    }
+  },
+  "driver-move": {
+    "summary": "移动",
+    "input": {
+      "type": [
+        "object"
+      ],
+      "description": "调用参数",
+      "properties": {
+        "mount": {
+          "type": [
+            "string"
+          ],
+          "description": "挂载项 ID"
+        },
+        "entry": {
+          "type": [
+            "object"
+          ],
+          "description": "驱动返回的条目：id、parentId、name、dir、size、mtime、ctime、hash、version、ref",
+          "additionalProperties": true
+        },
+        "parent": {
+          "type": [
+            "string"
+          ],
+          "description": "目标目录 ID"
+        }
+      },
+      "required": [
+        "mount",
+        "entry",
+        "parent"
+      ]
+    },
+    "output": {
+      "type": [
+        "object"
+      ],
+      "description": "驱动返回的条目：id、parentId、name、dir、size、mtime、ctime、hash、version、ref",
+      "additionalProperties": true
+    },
+    "example": {
+      "args": {
+        "mount": "x",
+        "entry": {
+          "id": "1"
+        },
+        "parent": "0"
+      },
+      "result": {}
+    }
+  },
+  "driver-upload": {
+    "summary": "上传一步",
+    "input": {
+      "type": [
+        "object"
+      ],
+      "description": "调用参数",
+      "properties": {
+        "mount": {
+          "type": [
+            "string"
+          ],
+          "description": "挂载项 ID"
+        },
+        "parent": {
+          "type": [
+            "string"
+          ],
+          "description": "目标目录 ID"
+        },
+        "name": {
+          "type": [
+            "string"
+          ],
+          "description": "文件名"
+        },
+        "sourcePath": {
+          "type": [
+            "string"
+          ],
+          "description": "暂存目录内的源文件"
+        },
+        "state": {
+          "type": [
+            "string"
+          ],
+          "description": "上一步返回的上传状态"
+        }
+      },
+      "required": [
+        "mount",
+        "parent",
+        "name",
+        "sourcePath"
+      ]
+    },
+    "output": {
+      "type": [
+        "object"
+      ],
+      "description": "state、complete、uploaded、size、id",
+      "additionalProperties": true
+    },
+    "notes": "分步续传：重复调用并传回 state，直到 complete。首次会按 SHA-1 尝试秒传。",
+    "example": {
+      "args": {
+        "mount": "x",
+        "parent": "0",
+        "name": "a.mkv",
+        "sourcePath": "/data/plugins/com.tide.mount/staging/x/1.data"
+      },
+      "result": {
+        "complete": false
+      }
+    }
+  },
+  "driver-read": {
+    "summary": "代读一段数据",
+    "input": {
+      "type": [
+        "object"
+      ],
+      "description": "调用参数",
+      "properties": {
+        "mount": {
+          "type": [
+            "string"
+          ],
+          "description": "挂载项 ID"
+        },
+        "entry": {
+          "type": [
+            "object"
+          ],
+          "description": "驱动返回的条目：id、parentId、name、dir、size、mtime、ctime、hash、version、ref",
+          "additionalProperties": true
+        },
+        "url": {
+          "type": [
+            "string"
+          ],
+          "description": "driver-url 返回的链接"
+        },
+        "offset": {
+          "type": [
+            "integer"
+          ],
+          "description": "起始字节"
+        },
+        "length": {
+          "type": [
+            "integer"
+          ],
+          "description": "字节数，最多 64 MiB"
+        },
+        "outputPath": {
+          "type": [
+            "string"
+          ],
+          "description": "缓存目录 proxy 下尚不存在的文件"
+        }
+      },
+      "required": [
+        "mount",
+        "entry",
+        "url",
+        "offset",
+        "length",
+        "outputPath"
+      ]
+    },
+    "output": {
+      "type": [
+        "object"
+      ],
+      "description": "status、bytes",
+      "additionalProperties": true
+    },
+    "notes": "仅用于下载需要账号 Cookie 的网盘（夸克）：由连接器带 Cookie 下载并写入文件，Cookie 不离开连接器。status 为上游 HTTP 状态。",
+    "example": {
+      "args": {
+        "mount": "x",
+        "entry": {
+          "id": "1"
+        },
+        "url": "https://example.quark.cn/f",
+        "offset": 0,
+        "length": 4194304,
+        "outputPath": "/data/plugins/com.tide.mount/cache/proxy/1.part"
+      },
+      "result": {
+        "status": 206,
+        "bytes": 4194304
+      }
+    }
+  },
+  "driver-remove": {
+    "summary": "删除",
+    "input": {
+      "type": [
+        "object"
+      ],
+      "description": "调用参数",
+      "properties": {
+        "mount": {
+          "type": [
+            "string"
+          ],
+          "description": "挂载项 ID"
+        },
+        "entry": {
+          "type": [
+            "object"
+          ],
+          "description": "驱动返回的条目：id、parentId、name、dir、size、mtime、ctime、hash、version、ref",
+          "additionalProperties": true
+        }
+      },
+      "required": [
+        "mount",
+        "entry"
+      ]
+    },
+    "output": {
+      "type": [
+        "object"
+      ],
+      "description": "结果",
+      "additionalProperties": true
+    },
+    "example": {
+      "args": {
+        "mount": "x",
+        "entry": {
+          "id": "1"
+        }
+      },
+      "result": {
+        "removed": true
+      }
+    }
+  }
+}

@@ -11,7 +11,7 @@ npm ci --prefix sdk/packager
 node sdk/packager/pack.mjs --dir examples/resource-inspector --out resources-1.0.0.zip
 ```
 
-打包器读取示例中的 `manifest.json`、`main.js`、`operations.json`、`icon.png`，自动分组、裁剪和加密。可选文件为 `ui.json`、`migrations.json`、`NOTICE.txt`。不会打包整个目录、node_modules、源码映射、凭据或测试文件。
+打包器读取示例中的 `manifest.json`、`main.js`、`operations.json`、`icon.png`，自动分组、裁剪和加密。可选文件为 `ui.json`、`migrations.json`、`NOTICE.txt`；自定义界面还需 `console: true`、`dist/console.mjs` 和 `console.css`。不会打包整个目录、node_modules、源码映射、凭据或测试文件。
 
 在 Tide 商店开启开发者模式并了解第三方风险，再上传自己构建的 ZIP，查看安装预览后安装、启用。官方商店中的正式包可直接安装，无需开启开发者模式。自行重新打包会得到不同摘要，因此视为第三方包。
 
@@ -24,6 +24,7 @@ node sdk/packager/pack.mjs --dir examples/resource-inspector --out resources-1.0
 | operations.json | 每个动作的输入、输出和示例 |
 | icon.png | 最大 128 KiB，宽高不超过 512 的 PNG |
 | ui.json | 可选的声明式表单、表格及操作页面 |
+| dist/console.mjs、console.css | 可选的自定义界面脚本与独立样式，见 [界面开发](console.md) |
 | migrations.json | 可选的私有 SQLite 迁移 |
 | NOTICE.txt | 可选的版权和许可证声明 |
 

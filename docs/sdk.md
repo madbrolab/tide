@@ -44,6 +44,8 @@ const result = await ctx.invoke({
 
 凭据句柄绑定本次调用链，不应存入私库留待下次使用。不要隐式读取其他插件的账号秘密。
 
+通用账号插件可用清单 `credentialTargets` 声明多个连接器，并在凭据绑定中用 `targetColumn` 指定记录所属的连接器。密封记录与目标绑定，修改明文列不会改变句柄的适用目标；原有 `credentialTarget` 单连接器写法继续可用。需要统一接入多个网盘时，可通过[云盘账号中心](accounts.md)的 `call` 动作转发，避免在业务插件里保存账号秘密。
+
 ## 结构定义与接口发现
 
 - [清单](schemas/plugin-manifest.schema.json)
@@ -59,4 +61,4 @@ const result = await ctx.invoke({
 
 ## 页面
 
-第三方插件用 `ui.json` 声明表单、表格和动作，由基座渲染并沿用主题。字段值作为文本处理，不接受 HTML、脚本、iframe 或自定义前端框架。复杂独立 Console 属于既有官方组件通道，不属于公开加密打包器的第三方页面能力。动作调用与页面加载彼此独立，不因展示页面而启动后台常驻服务。
+简单页面可用 `ui.json` 声明表单、表格和动作；需要独有布局及样式时，使用加密包中的 `console.mjs` 与 `console.css`，在宿主内容区内展示。两种方式都不需要额外签名。详见 [自定义插件界面](console.md) 和 [界面契约](../sdk/console.d.ts)。

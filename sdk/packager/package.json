@@ -1,9 +1,15 @@
 {
   "name": "@madbrolab/tide-packager",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "private": true,
   "type": "module",
-  "bin": { "tidepack": "pack.mjs" },
-  "engines": { "node": ">=22" },
-  "dependencies": { "esbuild": "0.28.2" }
+  "bin": {
+    "tidepack": "pack.mjs"
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "dependencies": {
+    "esbuild": "0.28.2"
+  }
 }
