@@ -2,7 +2,7 @@
 
 按 Tide SDK 2 重写的纯 JavaScript 插件。部署使用现有 QuickJS 和宿主 SDK，不包含 Python、Node.js、额外运行环境或伴随进程，不修改基座。常规动作调用结束后释放运行时；没有注册常驻服务。
 
-[官方加密包](https://github.com/madbrolab/tide/blob/main/srore/packages/cloud115-2.0.1-encrypted.zip) · [对应源码](https://github.com/madbrolab/tide/blob/main/srore/packages/cloud115-2.0.1-corresponding-source.zip) · [动作契约](../srore/interfaces/com.tide.cloud115/operations.json) · [操作覆盖表](../srore/interfaces/com.tide.cloud115/P115C实现覆盖.tsv) · [完整清单](../srore/interfaces/com.tide.cloud115/P115C完整覆盖.tsv)
+[官方加密包](https://github.com/madbrolab/tide/blob/main/store/packages/cloud115-2.0.1-encrypted.zip) · [对应源码](https://github.com/madbrolab/tide/blob/main/store/packages/cloud115-2.0.1-corresponding-source.zip) · [动作契约](../store/interfaces/com.tide.cloud115/operations.json) · [操作覆盖表](../store/interfaces/com.tide.cloud115/P115C实现覆盖.tsv) · [完整清单](../store/interfaces/com.tide.cloud115/P115C完整覆盖.tsv)
 
 ## 覆盖范围
 
@@ -76,7 +76,7 @@ main.js 是分片构建输入，保留纯函数标注供官方构建器裁剪。
 
 已做离线协议、属性、工具函数对照，以及摘要、分享隔离、分页、续传、SQLite、加密会话、密码加密和写入恢复测试。**没有用真实 115 账号逐项实测，也没有执行真实 115 上传、移动或删除。** 覆盖表表示实现映射，不代表全部方法已在线验证；上游接口、风控和账号差异仍可能产生错误。
 
-本插件整体按 GPL-3.0 分发，保留 P115C 的 MIT 声明。提取码转换包含 p115pickcode 0.0.5 的 JS 移植；许可证见 [NOTICE.txt](../srore/interfaces/com.tide.cloud115/NOTICE.txt)，提供对应源码。
+本插件整体按 GPL-3.0 分发，保留 P115C 的 MIT 声明。提取码转换包含 p115pickcode 0.0.5 的 JS 移植；许可证见 [NOTICE.txt](../store/interfaces/com.tide.cloud115/NOTICE.txt)，提供对应源码。
 
 ## 2.0.1 更新
 
